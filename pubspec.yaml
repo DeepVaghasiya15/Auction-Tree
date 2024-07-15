@@ -62,6 +62,16 @@ flutter:
 
   assets:
     - assets/images/
+    - assets/images/Broker/
+    - assets/images/ExquisiteEstate/
+    - assets/images/House/
+    - assets/images/LuxuriousBoutiqueRetreat/
+    - assets/images/Megma/
+    - assets/images/MyLand/
+    - assets/images/MyPlaza/
+    - assets/images/PerfectPlaza/
+    - assets/images/PropertyCard/
+    - assets/images/SunshineVilla/
 
   fonts:
     - family: Lato

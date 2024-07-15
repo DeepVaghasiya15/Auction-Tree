@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../../data/property_card_data.dart';
+import '../../propertyDetail_screen.dart';
 import '../propertyCard.dart';
 import 'discover_screen_widgets/search_bar_widget.dart';
 
@@ -36,7 +37,7 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
 
   @override
   Widget build(BuildContext context) {
-    List<Map<String, String>> displayedProperties = Properties;
+    List<Map<String, dynamic>> displayedProperties = Properties;
 
     if (_selectedCategory.isNotEmpty) {
       displayedProperties = Properties
@@ -114,25 +115,37 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                       textAlign: TextAlign.center,
                     ),
                     const SizedBox(height: 10),
-                    ...displayedProperties.map((property) => Column(
-                      children: [
-                        PropertyCard(
-                          imageAssetPath: property['imageAssetPath']!,
-                          type: property['type']!,
-                          title: property['title']!,
-                          address: property['address']!,
-                          builtUpArea: property['builtUpArea']!,
-                          lotSize: property['lotSize']!,
-                          auctionStatus: property['auctionStatus']!,
-                          currentBid: property['currentBid']!,
-                          onTap: () {
-                            // Handle navigation here
-                            // Navigator.pushNamed(context, '/propertyDetailScreen');
-                          },
-                        ),
-                        const SizedBox(height: 10),
-                      ],
-                    )),
+                    ...displayedProperties.map((property) {
+                      final imagePaths = property['imagePaths'] as List<String>? ?? [];
+                      return Column(
+                        children: [
+                          PropertyCard(
+                            imageAssetPath: property['imageAssetPath']!,
+                            type: property['type']!,
+                            title: property['title']!,
+                            address: property['address']!,
+                            builtUpArea: property['builtUpArea']!,
+                            lotSize: property['lotSize']!,
+                            auctionStatus: property['auctionStatus']!,
+                            currentBid: property['currentBid']!,
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => PropertyDetailScreen(
+                                    title: property['title']!,
+                                    id: property['id'] ?? 'ID not available',
+                                    address: property['address'] ?? 'Address not available',
+                                    imagePaths: imagePaths, auctionStatus: property['auctionStatus'] ?? 'No Auction Detail',
+                                  ),
+                                ),
+                              );
+                            },
+                          ),
+                          const SizedBox(height: 10),
+                        ],
+                      );
+                    }).toList(),
                     const SizedBox(height: 10), // Additional spacing at the bottom
                   ],
                 ),

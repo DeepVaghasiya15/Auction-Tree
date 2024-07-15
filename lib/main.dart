@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
         '/login': (context) => LogIn(),
         '/register': (context) => Register(),
         '/homescreennew': (context) => HomeScreenNew(),
-        '/propertyDetailScreen': (context) => PropertyDetailScreen(),
+        // '/propertyDetailScreen': (context) => PropertyDetailScreen(title: '', id: '', address: '',),
       },
     );
   }

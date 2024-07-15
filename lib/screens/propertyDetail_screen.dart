@@ -1,4 +1,5 @@
 import 'dart:ui';
+import 'package:at_app/data/homepage_searchFilter_data.dart';
 import 'package:flutter/material.dart';
 import '../data/propertyDetail_screen_data.dart';
 import 'widgets/propertyCard.dart';
@@ -11,7 +12,20 @@ import 'widgets/property_details_widgets/order_reports.dart';
 import 'widgets/property_details_widgets/property_description.dart';
 
 class PropertyDetailScreen extends StatefulWidget {
-  const PropertyDetailScreen({Key? key}) : super(key: key);
+  final List<String> imagePaths;
+  final String title;
+  final String id;
+  final String address;
+  final String auctionStatus;
+
+  const PropertyDetailScreen({
+    Key? key,
+    required this.title,
+    required this.id,
+    required this.address,
+    required this.imagePaths,
+    required this.auctionStatus,
+  }) : super(key: key);
 
   @override
   State<PropertyDetailScreen> createState() => _PropertyDetailScreenState();
@@ -40,7 +54,7 @@ class _PropertyDetailScreenState extends State<PropertyDetailScreen> {
       body: Stack(
         children: [
           Padding(
-            padding: const EdgeInsets.only(top: 38.0,bottom: 80),
+            padding: const EdgeInsets.only(top: 38.0, bottom: 80),
             child: SingleChildScrollView(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -49,24 +63,21 @@ class _PropertyDetailScreenState extends State<PropertyDetailScreen> {
                     height: MediaQuery.of(context).size.height * 0.55,
                     child: PageView.builder(
                       controller: _pageController,
-                      itemCount: imagePaths.length,
+                      itemCount: widget.imagePaths.length,
                       itemBuilder: (BuildContext context, int index) {
                         return Stack(
                           children: [
                             Container(
-                              margin: const EdgeInsets.symmetric(
-                                  horizontal: 17.0, vertical: 15),
+                              margin: const EdgeInsets.symmetric(horizontal: 17.0, vertical: 15),
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(30.0),
                               ),
                               child: ClipRRect(
                                 borderRadius: BorderRadius.circular(30.0),
                                 child: Image.asset(
-                                  imagePaths[index],
+                                  widget.imagePaths[index],
                                   fit: BoxFit.cover,
-                                  width: MediaQuery.of(context)
-                                      .size
-                                      .width, // Full width of the screen
+                                  width: MediaQuery.of(context).size.width,
                                   height: MediaQuery.of(context).size.height,
                                 ),
                               ),
@@ -76,7 +87,7 @@ class _PropertyDetailScreenState extends State<PropertyDetailScreen> {
                               top: 30,
                               child: GestureDetector(
                                 onTap: () {
-                                  Navigator.of(context).pop(); // Replace with your navigation logic
+                                  Navigator.of(context).pop();
                                 },
                                 child: Container(
                                   padding: const EdgeInsets.all(10.0),
@@ -108,8 +119,8 @@ class _PropertyDetailScreenState extends State<PropertyDetailScreen> {
                                   color: Colors.black.withOpacity(0.5),
                                   borderRadius: BorderRadius.circular(15.0),
                                 ),
-                                child: const Text(
-                                  'Auction Coming Soon ',
+                                child: Text(
+                                  widget.auctionStatus,
                                   style: TextStyle(
                                     color: Colors.white,
                                     fontSize: 14.0,
@@ -128,21 +139,20 @@ class _PropertyDetailScreenState extends State<PropertyDetailScreen> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const Text(
-                          'Perfect Plaza',
-                          style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                        Text(
+                          widget.title,
+                          style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                         ),
-                        const Text(
-                          'ID: PROP240611285',
-                          style: TextStyle(fontSize: 12, fontWeight: FontWeight.w300),
+                        Text(
+                          widget.id,
+                          style: const TextStyle(fontSize: 12, fontWeight: FontWeight.w300),
                         ),
                         Row(
                           children: [
                             Flexible(
                               child: Text(
-                                'New York St, New York, NY 10001, United States',
-                                style:
-                                TextStyle(fontSize: 15, color: Colors.grey[600]),
+                                widget.address,
+                                style: TextStyle(fontSize: 15, color: Colors.grey[600]),
                                 softWrap: true,
                               ),
                             ),
@@ -152,7 +162,7 @@ class _PropertyDetailScreenState extends State<PropertyDetailScreen> {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(left: 16,right: 16),
+                    padding: const EdgeInsets.only(left: 16, right: 16),
                     child: Container(
                       decoration: BoxDecoration(
                         color: Colors.grey.shade100,
@@ -161,7 +171,7 @@ class _PropertyDetailScreenState extends State<PropertyDetailScreen> {
                       child: Padding(
                         padding: const EdgeInsets.fromLTRB(14, 10, 14, 10),
                         child: Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
                             PropertyDetailsWidget(propertyData: leftColumnData),
                             const SizedBox(width: 20),
@@ -184,9 +194,7 @@ class _PropertyDetailScreenState extends State<PropertyDetailScreen> {
                           isSelected: isSelected,
                           onPressed: (int index) {
                             setState(() {
-                              for (int buttonIndex = 0;
-                              buttonIndex < isSelected.length;
-                              buttonIndex++) {
+                              for (int buttonIndex = 0; buttonIndex < isSelected.length; buttonIndex++) {
                                 isSelected[buttonIndex] = (buttonIndex == index);
                               }
                               selectedIndex = index;
@@ -199,26 +207,22 @@ class _PropertyDetailScreenState extends State<PropertyDetailScreen> {
                             Container(
                               width: buttonWidth,
                               padding: const EdgeInsets.symmetric(vertical: 10),
-                              child: const Text('Property Description',
-                                  textAlign: TextAlign.center),
+                              child: const Text('Property Description', textAlign: TextAlign.center),
                             ),
                             Container(
                               width: buttonWidth,
                               padding: const EdgeInsets.symmetric(vertical: 10),
-                              child: const Text('Fees & Commission',
-                                  textAlign: TextAlign.center),
+                              child: const Text('Fees & Commission', textAlign: TextAlign.center),
                             ),
                             Container(
                               width: buttonWidth,
                               padding: const EdgeInsets.symmetric(vertical: 10),
-                              child: const Text('Order Reports',
-                                  textAlign: TextAlign.center),
+                              child: const Text('Order Reports', textAlign: TextAlign.center),
                             ),
                             Container(
                               width: buttonWidth,
                               padding: const EdgeInsets.symmetric(vertical: 10),
-                              child: const Text('EMI Calculator',
-                                  textAlign: TextAlign.center),
+                              child: const Text('EMI Calculator', textAlign: TextAlign.center),
                             ),
                           ],
                         );
@@ -236,31 +240,44 @@ class _PropertyDetailScreenState extends State<PropertyDetailScreen> {
                     height: 20,
                   ),
                   const Padding(
-                      padding: EdgeInsets.fromLTRB(16.0,5,16,10),
-                      child: MapIntegration()
+                    padding: EdgeInsets.fromLTRB(16.0, 5, 16, 10),
+                    child: MapIntegration(),
                   ),
                   const Padding(
-                    padding: EdgeInsets.fromLTRB(16,20,16,20),
+                    padding: EdgeInsets.fromLTRB(16, 20, 16, 20),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
-                        Text("Similar Properties", style: TextStyle(fontWeight: FontWeight.bold,fontSize: 24,),textAlign: TextAlign.left,),
+                        Text(
+                          "Similar Properties",
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 24,
+                          ),
+                          textAlign: TextAlign.left,
+                        ),
                         PropertyCard(
-                          imageAssetPath: 'assets/images/commercialPlaza.jpg',
+                          imageAssetPath: 'assets/images/PropertyCard/myPlaza.jpg',
                           type: 'Commercial Plaza',
                           title: 'My Plaza',
                           address: 'Florida A1A, Miami, FL 33125, United States',
                           builtUpArea: '10,000 sqft',
-                          lotSize: '2 Acres', auctionStatus: '', currentBid: '',
+                          lotSize: '2 Acres',
+                          auctionStatus: '',
+                          currentBid: '',
                         ),
-                        SizedBox(height: 10,),
+                        SizedBox(
+                          height: 10,
+                        ),
                         PropertyCard(
-                          imageAssetPath: 'assets/images/megmaCommercial.webp',
+                          imageAssetPath: 'assets/images/PropertyCard/megma.webp',
                           type: 'Hotel',
                           title: 'Megma',
                           address: "Indira Gandhi Int'l T3 Rd, Delhi, DL 110037, India",
                           builtUpArea: '150,000 sqft',
-                          lotSize: '30 Acres', auctionStatus: '', currentBid: '',
+                          lotSize: '30 Acres',
+                          auctionStatus: '',
+                          currentBid: '',
                         )
                       ],
                     ),
