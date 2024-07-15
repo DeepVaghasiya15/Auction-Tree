@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../../data/property_card_data.dart';
+import '../../propertyDetail_screen.dart';
 import '../propertyCard.dart';
 import 'discover_screen_widgets/search_bar_widget.dart';
 
@@ -126,8 +127,12 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                           auctionStatus: property['auctionStatus']!,
                           currentBid: property['currentBid']!,
                           onTap: () {
-                            // Handle navigation here
-                            // Navigator.pushNamed(context, '/propertyDetailScreen');
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => PropertyDetailScreen(),
+                              ),
+                            );
                           },
                         ),
                         const SizedBox(height: 10),

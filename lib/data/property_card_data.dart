@@ -16,7 +16,7 @@ final List<Map<String, String>> Properties = [
     'title': 'Perfect Plaza',
     'address': 'New York St, New York, NY 10001, United States',
     'builtUpArea': '25,000 sqft',
-    'lotSize': '3 Acres',
+    'lotSize': '0.5 Acres',
     'auctionStatus': 'Auction Coming Soon',
     'currentBid' : '',
     'category': 'Commercial'
@@ -27,7 +27,7 @@ final List<Map<String, String>> Properties = [
     'title': 'My Plaza',
     'address': 'Florida A1A, Miami, FL 33125, United States',
     'builtUpArea': '10,000 sqft',
-    'lotSize': '2 Acres',
+    'lotSize': '0.2 Acres',
     'auctionStatus': 'Auction Coming Soon',
     'currentBid' : '',
     'category': 'Commercial'
@@ -37,7 +37,7 @@ final List<Map<String, String>> Properties = [
     'type': 'Hotel',
     'title': 'Megma',
     'address': "Indira Gandhi Int'l T3 Rd, Delhi, DL 110037, India",
-    'builtUpArea': '150,000 sqft',
+    'builtUpArea': '13,07,000 sqft',
     'lotSize': '30 Acres',
     'auctionStatus': 'Auction Coming Soon',
     'currentBid' : '',
@@ -49,7 +49,7 @@ final List<Map<String, String>> Properties = [
     'title': 'Luxurious Boutique Retreat',
     'address': 'Noida-Greater Noida Expy, Noida, UP, India',
     'builtUpArea': '5000 sqft',
-    'lotSize': '1 Acre',
+    'lotSize': '0.1 Acre',
     'auctionStatus': 'Auction is live',
     'currentBid' : '₹ 10,00,01,35,00,000',
     'category': 'Residential'
@@ -60,7 +60,7 @@ final List<Map<String, String>> Properties = [
     'title': 'Exquisite Estate',
     'address': 'Kochi - Salem Hwy, Ernakulam, KL, India',
     'builtUpArea': '2500 sqft',
-    'lotSize': '1 Acre',
+    'lotSize': '0.05 Acre',
     'auctionStatus': 'Auction is live',
     'currentBid' : '₹ 2,00,000',
     'category': 'Residential'
@@ -71,7 +71,7 @@ final List<Map<String, String>> Properties = [
     'title': 'Sunshine Villa',
     'address': '2150 Town Square Place, Sugar Land, TX 77478, United States',
     'builtUpArea': '3500 sqft',
-    'lotSize': '1 Acre',
+    'lotSize': '0.08 Acre',
     'auctionStatus': 'Auction Coming Soon',
     'currentBid' : '',
     'category': 'Residential'
@@ -82,7 +82,7 @@ final List<Map<String, String>> Properties = [
     'title': 'House',
     'address': '3737Branford Pl, Sugar Land, sugar land, Texas 77479, United States',
     'builtUpArea': '4000 sqft',
-    'lotSize': '1 Acre',
+    'lotSize': '0.09 Acre',
     'auctionStatus': 'Auction Coming Soon',
     'currentBid' : '',
     'category': 'Residential'
