@@ -88,7 +88,7 @@ class _PropertyDetailScreenState extends State<PropertyDetailScreen> {
                                         color: Colors.black.withOpacity(0.2),
                                         spreadRadius: 1,
                                         blurRadius: 3,
-                                        offset: const Offset(0, 2), // changes position of shadow
+                                        offset: const Offset(0, 2),
                                       ),
                                     ],
                                   ),
@@ -251,7 +251,7 @@ class _PropertyDetailScreenState extends State<PropertyDetailScreen> {
                           title: 'My Plaza',
                           address: 'Florida A1A, Miami, FL 33125, United States',
                           builtUpArea: '10,000 sqft',
-                          lotSize: '2 Acres',
+                          lotSize: '2 Acres', auctionStatus: '', currentBid: '',
                         ),
                         SizedBox(height: 10,),
                         PropertyCard(
@@ -260,7 +260,7 @@ class _PropertyDetailScreenState extends State<PropertyDetailScreen> {
                           title: 'Megma',
                           address: "Indira Gandhi Int'l T3 Rd, Delhi, DL 110037, India",
                           builtUpArea: '150,000 sqft',
-                          lotSize: '30 Acres',
+                          lotSize: '30 Acres', auctionStatus: '', currentBid: '',
                         )
                       ],
                     ),

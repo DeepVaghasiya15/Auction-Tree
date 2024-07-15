@@ -7,6 +7,8 @@ class PropertyCard extends StatefulWidget {
   final String address;
   final String builtUpArea;
   final String lotSize;
+  final String auctionStatus;
+  final String currentBid;
   final VoidCallback? onTap;
 
   const PropertyCard({
@@ -17,6 +19,8 @@ class PropertyCard extends StatefulWidget {
     required this.address,
     required this.builtUpArea,
     required this.lotSize,
+    required this.auctionStatus,
+    required this.currentBid,
     this.onTap,
   }) : super(key: key);
 
@@ -148,13 +152,43 @@ class _PropertyCardState extends State<PropertyCard> {
                     color: Colors.grey,
                   ),
                   const SizedBox(height: 4),
-                  const Center(
-                    child: Text(
-                      "Auction Coming Soon",
-                      style: TextStyle(
-                          color: Color(0xFFCA996E),
-                          fontWeight: FontWeight.bold,
-                          fontSize: 16),
+                  Center(
+                    child: Column(
+                      children: [
+                        Text(
+                          widget.auctionStatus,
+                          style: TextStyle(
+                            color: widget.auctionStatus == 'Auction is live'
+                                ? Colors.green
+                                : Color(0xFFCA996E),
+                            fontWeight: FontWeight.bold,
+                            fontSize: 16,
+                          ),
+                        ),
+                        const SizedBox(height: 15),
+                        if (widget.auctionStatus == 'Auction is live')
+                          Text.rich(
+                            TextSpan(
+                              children: [
+                                const TextSpan(
+                                  text: 'Current Highest Bid : ',
+                                  style: TextStyle(
+                                    fontSize: 16,
+                                    color: Colors.black,
+                                  ),
+                                ),
+                                TextSpan(
+                                  text: widget.currentBid,
+                                  style: const TextStyle(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.black,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                      ],
                     ),
                   ),
                 ],

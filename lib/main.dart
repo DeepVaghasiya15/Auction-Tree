@@ -1,5 +1,3 @@
-
-import 'package:at_app/screens/home_screen.dart';
 import 'package:at_app/screens/home_screen_new.dart';
 import 'package:at_app/screens/login/login.dart';
 import 'package:at_app/screens/login/register.dart';
@@ -27,7 +25,6 @@ class MyApp extends StatelessWidget {
         '/splash': (context) => SplashScreen(),
         '/login': (context) => LogIn(),
         '/register': (context) => Register(),
-        '/homescreen': (context) => HomeScreen(),
         '/homescreennew': (context) => HomeScreenNew(),
         '/propertyDetailScreen': (context) => PropertyDetailScreen(),
       },

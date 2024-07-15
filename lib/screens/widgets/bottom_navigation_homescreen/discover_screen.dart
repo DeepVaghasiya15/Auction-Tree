@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../../data/property_card_data.dart';
 import '../propertyCard.dart';
 import 'discover_screen_widgets/search_bar_widget.dart';
 
@@ -9,6 +10,7 @@ class DiscoverScreen extends StatefulWidget {
 
 class _DiscoverScreenState extends State<DiscoverScreen> {
   final FocusNode _searchFocusNode = FocusNode();
+  String _selectedCategory = '';
 
   @override
   void dispose() {
@@ -25,8 +27,23 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
     );
   }
 
+  // Method to update the selected category
+  void _updateCategory(String category) {
+    setState(() {
+      _selectedCategory = category;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
+    List<Map<String, String>> displayedProperties = Properties;
+
+    if (_selectedCategory.isNotEmpty) {
+      displayedProperties = Properties
+          .where((property) => property['category'] == _selectedCategory)
+          .toList();
+    }
+
     return Scaffold(
       body: Column(
         children: [
@@ -91,42 +108,32 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
+                    const Text(
                       'Featured Property',
                       style: TextStyle(fontSize: 26, fontWeight: FontWeight.bold),
                       textAlign: TextAlign.center,
                     ),
-                    SizedBox(height: 10),
-                    PropertyCard(
-                      imageAssetPath: 'assets/images/commercial.webp',
-                      type: 'Commercial Plaza',
-                      title: 'Perfect Plaza',
-                      address: 'New York St, New York, NY 10001, United States',
-                      builtUpArea: '25,000 sqft',
-                      lotSize: '3 Acres',
-                      onTap: () {
-                        Navigator.pushNamed(context, '/propertyDetailScreen');
-                      },
-                    ),
-                    SizedBox(height: 10),
-                    PropertyCard(
-                      imageAssetPath: 'assets/images/commercialPlaza.jpg',
-                      type: 'Commercial Plaza',
-                      title: 'My Plaza',
-                      address: 'Florida A1A, Miami, FL 33125, United States',
-                      builtUpArea: '10,000 sqft',
-                      lotSize: '2 Acres',
-                    ),
-                    SizedBox(height: 10),
-                    PropertyCard(
-                      imageAssetPath: 'assets/images/megmaCommercial.webp',
-                      type: 'Hotel',
-                      title: 'Megma',
-                      address: "Indira Gandhi Int'l T3 Rd, Delhi, DL 110037, India",
-                      builtUpArea: '150,000 sqft',
-                      lotSize: '30 Acres',
-                    ),
-                    SizedBox(height: 10), // Additional spacing at the bottom
+                    const SizedBox(height: 10),
+                    ...displayedProperties.map((property) => Column(
+                      children: [
+                        PropertyCard(
+                          imageAssetPath: property['imageAssetPath']!,
+                          type: property['type']!,
+                          title: property['title']!,
+                          address: property['address']!,
+                          builtUpArea: property['builtUpArea']!,
+                          lotSize: property['lotSize']!,
+                          auctionStatus: property['auctionStatus']!,
+                          currentBid: property['currentBid']!,
+                          onTap: () {
+                            // Handle navigation here
+                            // Navigator.pushNamed(context, '/propertyDetailScreen');
+                          },
+                        ),
+                        const SizedBox(height: 10),
+                      ],
+                    )),
+                    const SizedBox(height: 10), // Additional spacing at the bottom
                   ],
                 ),
               ),
@@ -138,23 +145,26 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
   }
 
   Widget _buildIconSquare(IconData icon, String label, Color color) {
-    return Column(
-      children: [
-        Container(
-          width: 100,
-          height: 40,
-          decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(8.0),
-            border: Border.all(
-              color: Colors.grey,
-              width: 2.0,
+    return GestureDetector(
+      onTap: () => _updateCategory(label),
+      child: Column(
+        children: [
+          Container(
+            width: 100,
+            height: 40,
+            decoration: BoxDecoration(
+              color: _selectedCategory == label ? color.withOpacity(0.3) : Colors.white,
+              borderRadius: BorderRadius.circular(8.0),
+              border: Border.all(
+                color: Colors.grey,
+                width: 2.0,
+              ),
             ),
+            child: Icon(icon, size: 30, color: color),
           ),
-          child: Icon(icon, size: 30, color: color),
-        ),
-        Text(label, style: TextStyle(fontSize: 14)),
-      ],
+          Text(label, style: const TextStyle(fontSize: 14)),
+        ],
+      ),
     );
   }
 }

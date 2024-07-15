@@ -47,9 +47,9 @@ class _SearchScreenState extends State<SearchScreen> {
       },
       child: Scaffold(
         appBar: AppBar(
-          title: Text('Search'),
+          title: const Text('Search'),
           leading: IconButton(
-            icon: Icon(Icons.arrow_back),
+            icon: const Icon(Icons.arrow_back),
             onPressed: () => _unfocusAndGoBack(context),
           ),
         ),
@@ -72,13 +72,13 @@ class _SearchScreenState extends State<SearchScreen> {
                       hintText: 'Search...',
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(25.0),
-                        borderSide: BorderSide(color: Colors.grey), // Grey border for the search bar
+                        borderSide: const BorderSide(color: Colors.grey), // Grey border for the search bar
                       ),
-                      contentPadding: EdgeInsets.symmetric(vertical: 12.0, horizontal: 16.0),
-                      prefixIcon: Icon(Icons.search),
+                      contentPadding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 16.0),
+                      prefixIcon: const Icon(Icons.search),
                     ),
                   ),
-                  SizedBox(height: 16.0),
+                  const SizedBox(height: 16.0),
                   _buildCustomDropdown(
                     value: selectedCountry,
                     items: CountryData,
@@ -88,7 +88,7 @@ class _SearchScreenState extends State<SearchScreen> {
                       });
                     },
                   ),
-                  SizedBox(height: 12.0),
+                  const SizedBox(height: 12.0),
                   _buildCustomDropdown(
                     value: selectedPropertyType,
                     items: PropertyType,
@@ -98,7 +98,7 @@ class _SearchScreenState extends State<SearchScreen> {
                       });
                     },
                   ),
-                  SizedBox(height: 12.0),
+                  const SizedBox(height: 12.0),
                   _buildCustomDropdown(
                     value: selectedAuction,
                     items: AuctionType,
@@ -108,15 +108,15 @@ class _SearchScreenState extends State<SearchScreen> {
                       });
                     },
                   ),
-                  SizedBox(height: 16.0),
+                  const SizedBox(height: 16.0),
                   ElevatedButton(
                     onPressed: _onSearchPressed,
                     style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all<Color>(Color(0xFFCA996E)), // background color
+                      backgroundColor: MaterialStateProperty.all<Color>(const Color(0xFFCA996E)), // background color
                       foregroundColor: MaterialStateProperty.all<Color>(Colors.white), // text color
-                      minimumSize: MaterialStateProperty.all<Size>(Size(double.infinity, 45)), // height of the button
+                      minimumSize: MaterialStateProperty.all<Size>(const Size(double.infinity, 45)), // height of the button
                     ),
-                    child: Text('Search',style: TextStyle(fontSize: 20,color: Colors.black),),
+                    child: const Text('Search',style: TextStyle(fontSize: 20,color: Colors.black),),
                   ),
 
 
@@ -139,9 +139,9 @@ class _SearchScreenState extends State<SearchScreen> {
       decoration: InputDecoration(
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(25.0),
-          borderSide: BorderSide(color: Colors.grey), // Grey border for the dropdown
+          borderSide: const BorderSide(color: Colors.grey), // Grey border for the dropdown
         ),
-        contentPadding: EdgeInsets.symmetric(horizontal: 16.0),
+        contentPadding: const EdgeInsets.symmetric(horizontal: 16.0),
       ),
       onChanged: onChanged,
       items: items.map<DropdownMenuItem<String>>((String value) {
@@ -150,7 +150,7 @@ class _SearchScreenState extends State<SearchScreen> {
           child: Text(value),
         );
       }).toList(),
-      icon: Icon(Icons.arrow_drop_down),
+      icon: const Icon(Icons.arrow_drop_down),
       borderRadius: BorderRadius.circular(25.0),
     );
   }
