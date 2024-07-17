@@ -58,7 +58,7 @@ class LogIn extends StatelessWidget {
               ),
               SizedBox(height: 40),
               ElevatedButton(
-                onPressed: () => Navigator.pushNamed(context, '/homescreen'),
+                onPressed: () => Navigator.pushNamed(context, '/homescreennew'),
                 child: Text(
                   'Log In',
                   style: TextStyle(fontSize: 20),

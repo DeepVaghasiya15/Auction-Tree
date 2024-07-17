@@ -32,9 +32,9 @@ class InfoSection extends StatelessWidget {
 }
 
 class PropertyDetailsWidget extends StatelessWidget {
-  final List<Map<String, dynamic>> propertyData;
+  List<Map<String, dynamic>> propertyData;
 
-  const PropertyDetailsWidget({Key? key, required this.propertyData}) : super(key: key);
+  PropertyDetailsWidget({Key? key, required this.propertyData}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

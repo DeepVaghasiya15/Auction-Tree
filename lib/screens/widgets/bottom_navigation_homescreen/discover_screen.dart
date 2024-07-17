@@ -12,6 +12,7 @@ class DiscoverScreen extends StatefulWidget {
 class _DiscoverScreenState extends State<DiscoverScreen> {
   final FocusNode _searchFocusNode = FocusNode();
   String _selectedCategory = '';
+  String _selectedTitle = '';
 
   @override
   void dispose() {
@@ -32,6 +33,13 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
   void _updateCategory(String category) {
     setState(() {
       _selectedCategory = category;
+    });
+  }
+
+  // Method to update the selected title
+  void _updateTitle(String title) {
+    setState(() {
+      _selectedTitle = title;
     });
   }
 
@@ -115,8 +123,11 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                       textAlign: TextAlign.center,
                     ),
                     const SizedBox(height: 10),
-                    ...displayedProperties.map((property) {
+                    ...displayedProperties.asMap().entries.map((entry) {
+                      final index = entry.key;
+                      final property = entry.value;
                       final imagePaths = property['imagePaths'] as List<String>? ?? [];
+
                       return Column(
                         children: [
                           PropertyCard(
@@ -129,6 +140,7 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                             auctionStatus: property['auctionStatus']!,
                             currentBid: property['currentBid']!,
                             onTap: () {
+                              _updateTitle(property['title']!); // Update selected title
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
@@ -136,7 +148,12 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                                     title: property['title']!,
                                     id: property['id'] ?? 'ID not available',
                                     address: property['address'] ?? 'Address not available',
-                                    imagePaths: imagePaths, auctionStatus: property['auctionStatus'] ?? 'No Auction Detail',
+                                    imagePaths: imagePaths,
+                                    auctionStatus: property['auctionStatus'] ?? 'No Auction Detail',
+                                    latitude: property['latitude'] ?? 'No long',
+                                    longitude: property['longitude'] ?? 'No long',
+                                    description: property['description'] ?? 'No description',
+                                    propertyIndex: property['index'],
                                   ),
                                 ),
                               );

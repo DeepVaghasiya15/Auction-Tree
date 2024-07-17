@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Auction Tree',
       theme: lightMode,
-      initialRoute: '/homescreennew',
+      initialRoute: '/splash',
       routes: {
         '/splash': (context) => SplashScreen(),
         '/login': (context) => LogIn(),

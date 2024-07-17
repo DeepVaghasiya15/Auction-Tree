@@ -1,7 +1,6 @@
 import 'dart:ui';
-import 'package:at_app/data/homepage_searchFilter_data.dart';
 import 'package:flutter/material.dart';
-import '../data/propertyDetail_screen_data.dart';
+import '../data/property_card_data.dart';
 import 'widgets/propertyCard.dart';
 import 'widgets/propertyDetail_screen_widget.dart';
 import 'widgets/property_details_widgets/emi_calculator.dart';
@@ -17,6 +16,10 @@ class PropertyDetailScreen extends StatefulWidget {
   final String id;
   final String address;
   final String auctionStatus;
+  final String latitude;
+  final String longitude;
+  final String description;
+  final int propertyIndex;
 
   const PropertyDetailScreen({
     Key? key,
@@ -25,6 +28,9 @@ class PropertyDetailScreen extends StatefulWidget {
     required this.address,
     required this.imagePaths,
     required this.auctionStatus,
+    required this.latitude,
+    required this.longitude,
+    required this.description, required this.propertyIndex,
   }) : super(key: key);
 
   @override
@@ -35,11 +41,36 @@ class _PropertyDetailScreenState extends State<PropertyDetailScreen> {
   late PageController _pageController;
   List<bool> isSelected = [true, false, false, false];
   int selectedIndex = 0;
+  List<Map<String, dynamic>> leftColumnData = [];
+  List<Map<String, dynamic>> rightColumnData = [];
 
   @override
   void initState() {
     _pageController = PageController(initialPage: 0);
     super.initState();
+    leftColumnData = [
+      {'icon': Icons.person, 'title': 'Listed By', 'value': Properties[widget.propertyIndex]['listedBy']},
+      {'icon': Icons.attach_money_rounded, 'title': 'Starting Bid', 'value': Properties[widget.propertyIndex]['startingBid']},
+      {'icon': Icons.landscape_rounded, 'title': 'Lot Size\n(Unit in Acres)', 'value': Properties[widget.propertyIndex]['lotSize2']},
+      {'icon': Icons.business, 'title': 'Property Type', 'value': Properties[widget.propertyIndex]['propertyType']},
+      {'icon': Icons.engineering, 'title': 'Builder Name', 'value': Properties[widget.propertyIndex]['BuilderName']},
+      {'icon': Icons.home, 'title': 'Property \nTotal No of Floor', 'value': Properties[widget.propertyIndex]['totalFloor']},
+      {'icon': Icons.layers, 'title': 'Property On Floor', 'value': Properties[widget.propertyIndex]['propertyFloor']},
+      {'icon': Icons.today, 'title': 'Possesion Time \n(In Days)', 'value': Properties[widget.propertyIndex]['PossesionTime']},
+      {'icon': Icons.gavel, 'title': 'Accepts Buyers Title', 'value': Properties[widget.propertyIndex]['AcceptBuyersTitle']},
+    ];
+
+    rightColumnData = [
+      {'icon': Icons.calendar_today_outlined, 'title': 'Property Built year', 'value': Properties[widget.propertyIndex]['PropertyBuiltYear']},
+      {'icon': Icons.account_circle_rounded, 'title': 'Architech Name', 'value': Properties[widget.propertyIndex]['ArchitextName']},
+      {'icon': Icons.square_foot_rounded, 'title': 'Builtup Area\n(Unit in Sqft)', 'value': Properties[widget.propertyIndex]['BuiltupArea']},
+      {'icon': Icons.local_parking_rounded, 'title': 'Car Parking', 'value': Properties[widget.propertyIndex]['CarParking']},
+      {'icon': Icons.credit_card, 'title': 'Property Tax ID', 'value': Properties[widget.propertyIndex]['PropertyTaxID']},
+      {'icon': Icons.domain, 'title': 'Asset Type', 'value': Properties[widget.propertyIndex]['AssetType']},
+      {'icon': Icons.crop_square, 'title': 'Rentable \n(Unit in Sqft)', 'value': Properties[widget.propertyIndex]['Rentable']},
+      {'icon': Icons.door_front_door_outlined, 'title': 'Interior Access', 'value': Properties[widget.propertyIndex]['InteriorAccess']},
+      {'icon': Icons.person, 'title': 'Ownership', 'value': Properties[widget.propertyIndex]['Ownership']},
+    ];
   }
 
   @override
@@ -50,6 +81,7 @@ class _PropertyDetailScreenState extends State<PropertyDetailScreen> {
 
   @override
   Widget build(BuildContext context) {
+    print('Property Index: ${widget.propertyIndex}');
     return Scaffold(
       body: Stack(
         children: [
@@ -185,7 +217,7 @@ class _PropertyDetailScreenState extends State<PropertyDetailScreen> {
                     height: 20,
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(left: 20),
+                    padding: const EdgeInsets.only(left: 16),
                     child: LayoutBuilder(
                       builder: (context, constraints) {
                         double buttonWidth = (constraints.maxWidth - 30) / 4;
@@ -239,9 +271,12 @@ class _PropertyDetailScreenState extends State<PropertyDetailScreen> {
                   const SizedBox(
                     height: 20,
                   ),
-                  const Padding(
-                    padding: EdgeInsets.fromLTRB(16.0, 5, 16, 10),
-                    child: MapIntegration(),
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(16.0, 5, 16, 10),
+                    child: MapIntegration(
+                      latitude: double.parse(widget.latitude),
+                      longitude: double.parse(widget.longitude),
+                    ),
                   ),
                   const Padding(
                     padding: EdgeInsets.fromLTRB(16, 20, 16, 20),
@@ -263,7 +298,7 @@ class _PropertyDetailScreenState extends State<PropertyDetailScreen> {
                           address: 'Florida A1A, Miami, FL 33125, United States',
                           builtUpArea: '10,000 sqft',
                           lotSize: '2 Acres',
-                          auctionStatus: '',
+                          auctionStatus: 'Auction Coming Soon',
                           currentBid: '',
                         ),
                         SizedBox(
@@ -276,7 +311,7 @@ class _PropertyDetailScreenState extends State<PropertyDetailScreen> {
                           address: "Indira Gandhi Int'l T3 Rd, Delhi, DL 110037, India",
                           builtUpArea: '150,000 sqft',
                           lotSize: '30 Acres',
-                          auctionStatus: '',
+                          auctionStatus: 'Auction Coming Soon',
                           currentBid: '',
                         )
                       ],
@@ -286,7 +321,7 @@ class _PropertyDetailScreenState extends State<PropertyDetailScreen> {
               ),
             ),
           ),
-          Positioned(
+          const Positioned(
             left: 20,
             right: 20,
             bottom: 20, // Adjust as needed
@@ -300,7 +335,7 @@ class _PropertyDetailScreenState extends State<PropertyDetailScreen> {
   Widget _buildContent(int index) {
     switch (index) {
       case 0:
-        return const PropertyDescription();
+        return PropertyDescription(description: widget.description,);
       case 1:
         return const FeesCommission();
       case 2:

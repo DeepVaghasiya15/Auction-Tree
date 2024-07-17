@@ -47,6 +47,7 @@ dev_dependencies:
   # rules and activating additional ones.
   flutter_lints: ^3.0.0
   google_maps_flutter: ^2.6.0
+  flutter_launcher_icons: ^0.13.1
 #  geolocator: ^11.0.0
 
 # For information on the generic Dart part of this file, see the
