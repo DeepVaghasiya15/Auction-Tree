@@ -20,6 +20,15 @@ class PropertyDetailScreen extends StatefulWidget {
   final String longitude;
   final String description;
   final int propertyIndex;
+  final String title4;
+  final String subtitleFC;
+  final String subtitle2FC;
+  final String subtitle3FC;
+  final String subtitle4FC;
+  final String trailingFC;
+  final String trailing2FC;
+  final String trailing3FC;
+  final String trailing4FC;
 
   const PropertyDetailScreen({
     Key? key,
@@ -30,7 +39,17 @@ class PropertyDetailScreen extends StatefulWidget {
     required this.auctionStatus,
     required this.latitude,
     required this.longitude,
-    required this.description, required this.propertyIndex,
+    required this.description,
+    required this.propertyIndex,
+    required this.title4,
+    required this.subtitleFC,
+    required this.subtitle2FC,
+    required this.subtitle3FC,
+    required this.subtitle4FC,
+    required this.trailingFC,
+    required this.trailing2FC,
+    required this.trailing3FC,
+    required this.trailing4FC,
   }) : super(key: key);
 
   @override
@@ -153,7 +172,7 @@ class _PropertyDetailScreenState extends State<PropertyDetailScreen> {
                                 ),
                                 child: Text(
                                   widget.auctionStatus,
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                     color: Colors.white,
                                     fontSize: 14.0,
                                     fontWeight: FontWeight.normal,
@@ -337,7 +356,7 @@ class _PropertyDetailScreenState extends State<PropertyDetailScreen> {
       case 0:
         return PropertyDescription(description: widget.description,);
       case 1:
-        return const FeesCommission();
+        return FeesCommission(title4: widget.title4, subtitleFC: widget.subtitleFC, subtitle2FC: widget.subtitle2FC, subtitle3FC: widget.subtitle3FC, subtitle4FC: widget.subtitle4FC, trailingFC: widget.trailingFC, trailing2FC: widget.trailing2FC, trailing3FC: widget.trailing3FC, trailing4FC: widget.trailing4FC,);
       case 2:
         return const OrderReports();
       case 3:

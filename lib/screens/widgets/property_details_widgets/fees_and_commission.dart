@@ -1,7 +1,17 @@
 import 'package:flutter/material.dart';
 
 class FeesCommission extends StatelessWidget {
-  const FeesCommission({super.key});
+
+  final String title4;
+  final String subtitleFC;
+  final String subtitle2FC;
+  final String subtitle3FC;
+  final String subtitle4FC;
+  final String trailingFC;
+  final String trailing2FC;
+  final String trailing3FC;
+  final String trailing4FC;
+  const FeesCommission({super.key, required this.title4, required this.subtitleFC, required this.subtitle2FC, required this.subtitle3FC, required this.subtitle4FC, required this.trailingFC, required this.trailing2FC, required this.trailing3FC, required this.trailing4FC});
 
   @override
   Widget build(BuildContext context) {
@@ -15,28 +25,28 @@ class FeesCommission extends StatelessWidget {
             _buildListTile(
               context,
               title: "Buyer's Premium",
-              subtitle: "Winner will not be charged fee for this property.",
+              subtitle: subtitleFC,
               trailing: "Not Applicable",
               icon: Icons.account_balance_wallet,
             ),
             _buildListTile(
               context,
               title: "Broker Co-op",
-              subtitle: "As per the terms of the Listing Agreement, the Seller will provide a commission/fee to any appropriately registered Broker whose client not only emerges as the successful Buyer at the Auction but also completes the purchase of the Property.",
+              subtitle: subtitle2FC,
               trailing: "3% Available",
               icon: Icons.handshake,
             ),
             _buildListTile(
               context,
               title: "Closing Cost sharing with buyer",
-              subtitle: "Indicates that the seller is willing to share 2% of the closing costs with the buyer.",
+              subtitle: subtitle3FC,
               trailing: "2% Available",
               icon: Icons.attach_money,
             ),
             _buildListTile(
               context,
-              title: "Interior Access",
-              subtitle: "Please contact +1 832 679 2176 for details or Click Here to request a tour.",
+              title: title4,
+              subtitle: subtitle4FC,
               trailing: "Yes",
               icon: Icons.lock,
             ),

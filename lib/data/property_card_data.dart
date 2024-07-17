@@ -38,7 +38,17 @@ final List<Map<String, dynamic>> Properties = [
 
     'latitude':'29.8775805',
     'longitude':'-95.6514305',
-    'description': 'Agribusiness covers the production, processing, and distribution of farm-based goods.'
+    'description': 'Agribusiness covers the production, processing, and distribution of farm-based goods.',
+
+    'title4FC':'Land Inspection',
+    'subtitleFC':'Winner will not be charged fee for this property.',
+    'subtitle2FC':'As per the terms of the Listing Agreement, the Seller will provide a commission/fee to any appropriately registered Broker whose client not only emerges as the successful Buyer at the Auction but also completes the purchase of the Property.',
+    'subtitle3FC':'Indicates that the seller is willing to share 5 % of the closing costs with the buyer.',
+    'subtitle4FC':'Please contact +1 832 679 2176 for details or Click Here to request a tour.',
+    'trailingFC':'Not Applicable',
+    'trailing2FC':'5% Available',
+    'trailing3FC':'5% Available',
+    'trailing4FC':'Yes',
   },
   {
     'index': 1,
@@ -77,7 +87,17 @@ final List<Map<String, dynamic>> Properties = [
 
     'latitude':'40.7858896',
     'longitude':'-74.0112249',
-    'description': 'Big Plaza'
+    'description': 'Big Plaza',
+
+    'title4FC':'Interior Access',
+    'subtitleFC':'Winner will not be charged fee for this property.',
+    'subtitle2FC':'As per the terms of the Listing Agreement, the Seller will provide a commission/fee to any appropriately registered Broker whose client not only emerges as the successful Buyer at the Auction but also completes the purchase of the Property.',
+    'subtitle3FC':'Closing cost will not share with buyer.',
+    'subtitle4FC':'Please contact +1 832 679 2176 for details or Click Here to request a tour.',
+    'trailingFC':'Not Applicable',
+    'trailing2FC':'2% Available',
+    'trailing3FC':'Not Offered',
+    'trailing4FC':'Yes',
   },
   {
     'index': 2,
@@ -116,7 +136,17 @@ final List<Map<String, dynamic>> Properties = [
 
     'latitude':'27.8130567',
     'longitude':'-80.427826',
-    'description': 'you can use for business activities.'
+    'description': 'you can use for business activities.',
+
+    'title4FC':'Interior Access',
+    'subtitleFC':'Winner will not be charged fee for this property.',
+    'subtitle2FC':'As per the terms of the Listing Agreement, the Seller will provide a commission/fee to any appropriately registered Broker whose client not only emerges as the successful Buyer at the Auction but also completes the purchase of the Property.',
+    'subtitle3FC':'Indicates that the seller is willing to share 2% of the closing costs with the buyer.',
+    'subtitle4FC':'Please contact +1 832 679 2176 for details or Click Here to request a tour.',
+    'trailingFC':'Not Applicable',
+    'trailing2FC':'3% Available',
+    'trailing3FC':'2% Available',
+    'trailing4FC':'Yes',
   },
   {
     'index': 3,
@@ -155,7 +185,17 @@ final List<Map<String, dynamic>> Properties = [
 
     'latitude':'28.5544158',
     'longitude':'77.0945783',
-    'description': 'Indulge your palate at the on-site gourmet restaurant, where culinary mastery meets sensory delight. Elevate your spirits at the rooftop bar, offering panoramic city views and handcrafted libations. Rejuvenate your body and mind at the state-of-the-art fitness center and tranquil spa oasis. Host memorable events and conferences in sophisticated venues designed to inspire and impress. \n\nLocation Advantage:\n\n Ideally situated in the heart of a dynamic cityscape, the hotel enjoys privileged proximity to renowned attractions, entertainment venues, and corporate hubs. Whether for business or leisure, guests are seamlessly connected to the pulse of urban life, ensuring a memorable and convenient stay.'
+    'description': 'Indulge your palate at the on-site gourmet restaurant, where culinary mastery meets sensory delight. Elevate your spirits at the rooftop bar, offering panoramic city views and handcrafted libations. Rejuvenate your body and mind at the state-of-the-art fitness center and tranquil spa oasis. Host memorable events and conferences in sophisticated venues designed to inspire and impress. \n\nLocation Advantage:\n\n Ideally situated in the heart of a dynamic cityscape, the hotel enjoys privileged proximity to renowned attractions, entertainment venues, and corporate hubs. Whether for business or leisure, guests are seamlessly connected to the pulse of urban life, ensuring a memorable and convenient stay.',
+
+    'title4FC':'Interior Access',
+    'subtitleFC':'Winner will not be charged fee for this property.',
+    'subtitle2FC':'Broker Co-op is not Offered.',
+    'subtitle3FC':'Closing cost will not share with buyer.',
+    'subtitle4FC':'Please contact +1 832 679 2176 for details or Click Here to request a tour.',
+    'trailingFC':'Not Applicable',
+    'trailing2FC':'Not Offered',
+    'trailing3FC':'Not Offered',
+    'trailing4FC':'No',
   },
   {
     'index': 4,
@@ -194,7 +234,17 @@ final List<Map<String, dynamic>> Properties = [
 
     'latitude':'28.5003977',
     'longitude':'77.4045406',
-    'description': 'Hotel Highlights \n\n- Step into a realm of refined opulence, where every detail is meticulously curated to exceed the expectations of the discerning traveler. \n\n- From the exquisite architecture to the personalized service, this boutique hotel sets the standard for luxury accommodations and bespoke experiences.'
+    'description': 'Hotel Highlights \n\n- Step into a realm of refined opulence, where every detail is meticulously curated to exceed the expectations of the discerning traveler. \n\n- From the exquisite architecture to the personalized service, this boutique hotel sets the standard for luxury accommodations and bespoke experiences.',
+
+    'title4FC':'Interior Access',
+    'subtitleFC':'Winner will not be charged fee for this property.',
+    'subtitle2FC':'Broker Co-op is not Offered.',
+    'subtitle3FC':'Closing cost will not share with buyer.',
+    'subtitle4FC':'Please contact +1 832 679 2176 for details or Click Here to request a tour.',
+    'trailingFC':'Not Applicable',
+    'trailing2FC':'Not Offered',
+    'trailing3FC':'Not Offered',
+    'trailing4FC':'No',
   },
   {
     'index': 5,
@@ -233,7 +283,17 @@ final List<Map<String, dynamic>> Properties = [
 
     'latitude':'10.3471077',
     'longitude':'76.3186012',
-    'description': "Interior Features: \n\nAs you enter, you're greeted by a grand foyer, where gleaming hardwood floors lead you through the open-concept layout. The living room, adorned with a statement fireplace, invites cozy evenings, while the adjacent dining area is perfect for hosting gatherings."
+    'description': "Interior Features: \n\nAs you enter, you're greeted by a grand foyer, where gleaming hardwood floors lead you through the open-concept layout. The living room, adorned with a statement fireplace, invites cozy evenings, while the adjacent dining area is perfect for hosting gatherings.",
+
+    'title4FC':'Interior Access',
+    'subtitleFC':'Winner will not be charged fee for this property.',
+    'subtitle2FC':'Broker Co-op is not Offered.',
+    'subtitle3FC':'Closing cost will not share with buyer.',
+    'subtitle4FC':'Please contact +1 832 679 2176 for details or Click Here to request a tour.',
+    'trailingFC':'Not Applicable',
+    'trailing2FC':'Not Offered',
+    'trailing3FC':'Not Offered',
+    'trailing4FC':'Yes',
   },
   {
     'index': 6,
@@ -272,7 +332,17 @@ final List<Map<String, dynamic>> Properties = [
 
     'latitude':'29.596039',
     'longitude':'-95.6256584',
-    'description': 'Single Family Villa'
+    'description': 'Single Family Villa',
+
+    'title4FC':'Interior Access',
+    'subtitleFC':'Winner will not be charged fee for this property.',
+    'subtitle2FC':'As per the terms of the Listing Agreement, the Seller will provide a commission/fee to any appropriately registered Broker whose client not only emerges as the successful Buyer at the Auction but also completes the purchase of the Property.',
+    'subtitle3FC':'Closing cost will not share with buyer.',
+    'subtitle4FC':'Please contact +1 832 679 2176 for details or Click Here to request a tour.',
+    'trailingFC':'Not Applicable',
+    'trailing2FC':'5% Available',
+    'trailing3FC':'Not Offered',
+    'trailing4FC':'Yes',
   },
   {
     'index': 7,
@@ -311,6 +381,16 @@ final List<Map<String, dynamic>> Properties = [
 
     'latitude':'29.5409594',
     'longitude':'-95.6054144',
-    'description': 'Good property , not damaged'
+    'description': 'Good property , not damaged',
+
+    'title4FC':'Interior Access',
+    'subtitleFC':'Winner will not be charged fee for this property.',
+    'subtitle2FC':'Broker Co-op is not Offered.',
+    'subtitle3FC':'Closing cost will not share with buyer.',
+    'subtitle4FC':'Please contact +1 832 679 2176 for details or Click Here to request a tour.',
+    'trailingFC':'Not Applicable',
+    'trailing2FC':'Not Offered',
+    'trailing3FC':'Not Offered',
+    'trailing4FC':'Yes',
   },
 ];
