@@ -102,7 +102,7 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    _buildIconSquare(Icons.terrain, 'Land', const Color(0xFFCA996E)),
+                    _buildIconSquare(Icons.landscape_rounded, 'Land', const Color(0xFFCA996E)),
                     _buildIconSquare(Icons.business, 'Commercial', const Color(0xFFCA996E)),
                     _buildIconSquare(Icons.home_filled, 'Residential', const Color(0xFFCA996E)),
                   ],

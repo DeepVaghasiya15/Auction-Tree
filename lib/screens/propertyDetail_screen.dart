@@ -297,45 +297,45 @@ class _PropertyDetailScreenState extends State<PropertyDetailScreen> {
                       longitude: double.parse(widget.longitude),
                     ),
                   ),
-                  const Padding(
-                    padding: EdgeInsets.fromLTRB(16, 20, 16, 20),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        Text(
-                          "Similar Properties",
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 24,
-                          ),
-                          textAlign: TextAlign.left,
-                        ),
-                        PropertyCard(
-                          imageAssetPath: 'assets/images/PropertyCard/myPlaza.jpg',
-                          type: 'Commercial Plaza',
-                          title: 'My Plaza',
-                          address: 'Florida A1A, Miami, FL 33125, United States',
-                          builtUpArea: '10,000 sqft',
-                          lotSize: '2 Acres',
-                          auctionStatus: 'Auction Coming Soon',
-                          currentBid: '',
-                        ),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        PropertyCard(
-                          imageAssetPath: 'assets/images/PropertyCard/megma.webp',
-                          type: 'Hotel',
-                          title: 'Megma',
-                          address: "Indira Gandhi Int'l T3 Rd, Delhi, DL 110037, India",
-                          builtUpArea: '150,000 sqft',
-                          lotSize: '30 Acres',
-                          auctionStatus: 'Auction Coming Soon',
-                          currentBid: '',
-                        )
-                      ],
-                    ),
-                  ),
+                  // const Padding(
+                  //   padding: EdgeInsets.fromLTRB(16, 20, 16, 20),
+                  //   child: Column(
+                  //     mainAxisAlignment: MainAxisAlignment.start,
+                  //     children: [
+                  //       Text(
+                  //         "Similar Properties",
+                  //         style: TextStyle(
+                  //           fontWeight: FontWeight.bold,
+                  //           fontSize: 24,
+                  //         ),
+                  //         textAlign: TextAlign.left,
+                  //       ),
+                  //       PropertyCard(
+                  //         imageAssetPath: 'assets/images/PropertyCard/myPlaza.jpg',
+                  //         type: 'Commercial Plaza',
+                  //         title: 'My Plaza',
+                  //         address: 'Florida A1A, Miami, FL 33125, United States',
+                  //         builtUpArea: '10,000 sqft',
+                  //         lotSize: '2 Acres',
+                  //         auctionStatus: 'Auction Coming Soon',
+                  //         currentBid: '',
+                  //       ),
+                  //       SizedBox(
+                  //         height: 10,
+                  //       ),
+                  //       PropertyCard(
+                  //         imageAssetPath: 'assets/images/PropertyCard/megma.webp',
+                  //         type: 'Hotel',
+                  //         title: 'Megma',
+                  //         address: "Indira Gandhi Int'l T3 Rd, Delhi, DL 110037, India",
+                  //         builtUpArea: '150,000 sqft',
+                  //         lotSize: '30 Acres',
+                  //         auctionStatus: 'Auction Coming Soon',
+                  //         currentBid: '',
+                  //       )
+                  //     ],
+                  //   ),
+                  // ),
                 ],
               ),
             ),
