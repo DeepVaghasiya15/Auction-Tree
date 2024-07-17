@@ -140,7 +140,7 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                             auctionStatus: property['auctionStatus']!,
                             currentBid: property['currentBid']!,
                             onTap: () {
-                              _updateTitle(property['title']!); // Update selected title
+                              _updateTitle(property['title']!);
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(

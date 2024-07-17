@@ -3,8 +3,35 @@ import 'package:flutter/material.dart';
 class ServicesScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Text('Services Screen'),
+    return DefaultTabController(
+      length: 2, // Number of tabs
+      child: Scaffold(
+        body: Padding(
+          padding: const EdgeInsets.only(top: 50.0),
+          child: Column(
+            children: [
+              TabBar(
+                tabs: [
+                  Tab(text: 'Service List'),
+                  Tab(text: 'Service Provider'),
+                ],
+              ),
+              Expanded(
+                child: TabBarView(
+                  children: [
+                    Center(
+                      child: Text('Tab 1 Content'),
+                    ),
+                    Center(
+                      child: Text('Tab 2 Content'),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }
