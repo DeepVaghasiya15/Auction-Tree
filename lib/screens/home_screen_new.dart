@@ -30,7 +30,7 @@ class _HomeScreenNewState extends State<HomeScreenNew> {
         padding: const EdgeInsets.all(16.0),
         child: Container(
           decoration: BoxDecoration(
-            color: Colors.black.withOpacity(0.8), // Added transparency
+            color: Colors.black,
             borderRadius: BorderRadius.circular(30),
             boxShadow: const [
               BoxShadow(

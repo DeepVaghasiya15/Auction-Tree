@@ -20,10 +20,10 @@ class ServicesScreen extends StatelessWidget {
                 child: TabBarView(
                   children: [
                     Center(
-                      child: Text('Tab 1 Content'),
+                      child: Text('Data will be attched soon'),
                     ),
                     Center(
-                      child: Text('Tab 2 Content'),
+                      child: Text('Data will be attched soon'),
                     ),
                   ],
                 ),
