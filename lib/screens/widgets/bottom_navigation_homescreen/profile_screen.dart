@@ -42,34 +42,28 @@ class ProfileScreen extends StatelessWidget {
             ),
             SizedBox(height: 20),
             Divider(thickness: 1, color: Colors.grey[300]),
-            buildProfileOption(Icons.shopping_bag_outlined, 'Buy', Color(0xFFCA996E)),
-            buildProfileOption(Icons.monetization_on_outlined, 'Sell', Color(0xFFCA996E)),
-            buildProfileOption(Icons.gavel, 'Past Auction', Color(0xFFCA996E)),
-            buildProfileOption(Icons.people_alt_outlined, 'Brokers', Color(0xFFCA996E)),
-            buildProfileOption(Icons.info, 'About Us', Color(0xFFCA996E)),
-            buildProfileOption(Icons.help_center_outlined, 'FAQs', Color(0xFFCA996E)),
-            buildProfileOption(Icons.mail_outline, 'Contact Us', Color(0xFFCA996E)),
-            buildProfileOption(Icons.logout, 'Log out', Color(0xFFCA996E)),
+            buildProfileOption(context, Icons.shopping_bag_outlined, 'Buy', Color(0xFFCA996E), '/buy'),
+            buildProfileOption(context, Icons.monetization_on_outlined, 'Sell', Color(0xFFCA996E), '/sell'),
+            buildProfileOption(context, Icons.gavel, 'Past Auction', Color(0xFFCA996E), '/pastAuction'),
+            buildProfileOption(context, Icons.people_alt_outlined, 'Brokers', Color(0xFFCA996E), '/brokers'),
+            buildProfileOption(context, Icons.info, 'About Us', Color(0xFFCA996E), '/about_us'),
+            buildProfileOption(context, Icons.help_center_outlined, 'FAQs', Color(0xFFCA996E), '/faqs'),
+            buildProfileOption(context, Icons.mail_outline, 'Contact Us', Color(0xFFCA996E), '/contact_us'),
+            buildProfileOption(context, Icons.logout, 'Log out', Color(0xFFCA996E), '/logout'),
           ],
         ),
       ),
     );
   }
 
-  Widget buildProfileOption(IconData icon, String title, Color color) {
+  Widget buildProfileOption(BuildContext context, IconData icon, String title, Color color, String routeName) {
     return ListTile(
       leading: Icon(icon, color: color),
       title: Text(title),
       trailing: Icon(Icons.arrow_forward_ios, color: Colors.black),
       onTap: () {
-        // Add navigation or other functionality here
+        Navigator.pushNamed(context, routeName); // Navigate to the specified route
       },
     );
   }
-}
-
-void main() {
-  runApp(MaterialApp(
-    home: ProfileScreen(),
-  ));
 }
