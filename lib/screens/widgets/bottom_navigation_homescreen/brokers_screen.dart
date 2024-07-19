@@ -1,3 +1,4 @@
+import 'package:at_app/data/homepage_topImage_data.dart';
 import 'package:flutter/material.dart';
 import '../../../data/brokers_data.dart';
 class User {
@@ -14,7 +15,10 @@ class BrokersScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Brokers',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 30),),
+        title: const Text('Brokers',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 30),
+        ),
+        automaticallyImplyLeading: false,
+        centerTitle: true,
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
