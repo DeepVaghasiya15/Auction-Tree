@@ -22,7 +22,7 @@ class Property {
   final String id;
   final String imageAssetPath;
   final List<String> imagePaths;
-  final int index;
+  final int propertyIndex;
   final String latitude;
   final String listedBy;
   final String longitude;
@@ -36,7 +36,7 @@ class Property {
   final String subtitle4FC;
   final String subtitleFC;
   final String title;
-  final String title4FC;
+  final String title4;
   final String totalFloor;
   final String trailing2FC;
   final String trailing3FC;
@@ -66,7 +66,7 @@ class Property {
     required this.id,
     required this.imageAssetPath,
     required this.imagePaths,
-    required this.index,
+    required this.propertyIndex,
     required this.latitude,
     required this.listedBy,
     required this.longitude,
@@ -80,7 +80,7 @@ class Property {
     required this.subtitle4FC,
     required this.subtitleFC,
     required this.title,
-    required this.title4FC,
+    required this.title4,
     required this.totalFloor,
     required this.trailing2FC,
     required this.trailing3FC,
@@ -112,7 +112,7 @@ class Property {
       id: json['id'],
       imageAssetPath: json['imageAssetPath'],
       imagePaths: List<String>.from(json['imagePaths']),
-      index: json['index'],
+      propertyIndex: json['index'],
       latitude: json['latitude'],
       listedBy: json['listedBy'],
       longitude: json['longitude'],
@@ -126,7 +126,7 @@ class Property {
       subtitle4FC: json['subtitle4FC'],
       subtitleFC: json['subtitleFC'],
       title: json['title'],
-      title4FC: json['title4FC'],
+      title4: json['title4FC'],
       totalFloor: json['totalFloor'],
       trailing2FC: json['trailing2FC'],
       trailing3FC: json['trailing3FC'],

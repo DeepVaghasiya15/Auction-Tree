@@ -12,7 +12,8 @@ class User {
 class BrokersScreen extends StatelessWidget {
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context)
+  {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Brokers',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 30),
@@ -46,13 +47,14 @@ class UserCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final screenSize = MediaQuery.of(context).size;
     return Card(
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.start,
         children: [
           SizedBox(
-            height: 180,
-            width: 200,// Adjust the height as needed
+            height: screenSize.height * 0.2,
+            width: screenSize.height * 0.22,// Adjust the height as needed
             child: AspectRatio(
               aspectRatio: 3 / 4, // Aspect ratio of the image
               child: ClipRRect(

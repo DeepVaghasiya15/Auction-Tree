@@ -1,21 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
-import 'dart:convert';
+import '../../../../api/property_detail.dart';
 import '../../../../model/property_model.dart';
 import '../../../propertyDetail_screen.dart';
 import '../../propertyCard.dart';
-
-Future<List<Property>> fetchProperties() async {
-  final response = await http.get(Uri.parse('https://api-9bea.onrender.com/properties/'));
-
-  if (response.statusCode == 200) {
-    List<dynamic> body = json.decode(response.body);
-    List<Property> properties = body.map((dynamic item) => Property.fromJson(item)).toList();
-    return properties;
-  } else {
-    throw Exception('Failed to load properties');
-  }
-}
 
 class PastAuction extends StatelessWidget {
   const PastAuction({Key? key}) : super(key: key);
@@ -38,8 +25,12 @@ class PastAuction extends StatelessWidget {
             return const Center(child: Text('No properties available'));
           } else {
             List<Property> properties = snapshot.data!;
-            // Filter properties with index greater than 5
-            List<Property> filteredProperties = properties.where((property) => property.index > 5).toList();
+            List<Property> filteredProperties = properties.where((property) => property.propertyIndex > 5).toList();
+
+            print('Filtered properties count: ${filteredProperties.length}');
+            filteredProperties.forEach((property) {
+              print('Property Index: ${property.propertyIndex}');
+            });
 
             return SingleChildScrollView(
               child: Padding(
@@ -73,8 +64,8 @@ class PastAuction extends StatelessWidget {
                                     latitude: property.latitude,
                                     longitude: property.longitude,
                                     description: property.description,
-                                    propertyIndex: property.index,
-                                    title4: property.title4FC,
+                                    propertyIndex: property.propertyIndex,
+                                    title4: property.title4,
                                     subtitleFC: property.subtitleFC,
                                     subtitle2FC: property.subtitle2FC,
                                     subtitle3FC: property.subtitle3FC,
