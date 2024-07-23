@@ -11,15 +11,55 @@ class DiscoverScreen extends StatefulWidget {
 }
 
 class _DiscoverScreenState extends State<DiscoverScreen> {
-
   final FocusNode _searchFocusNode = FocusNode();
+  final ScrollController _scrollController = ScrollController();
   String _selectedCategory = '';
   String _selectedTitle = '';
+  int _currentPage = 1;
+  bool _isLoadingMore = false;
+  List<Map<String, dynamic>> _displayedProperties = [];
+  List<Map<String, dynamic>> _allProperties = Properties; // Assuming this is the complete list
+
+  @override
+  void initState() {
+    super.initState();
+    _loadInitialProperties();
+    _scrollController.addListener(_scrollListener);
+  }
 
   @override
   void dispose() {
     _searchFocusNode.dispose();
+    _scrollController.dispose();
     super.dispose();
+  }
+
+  void _loadInitialProperties() {
+    setState(() {
+      _displayedProperties = _allProperties.take(10).toList();
+    });
+  }
+
+  void _loadMoreProperties() {
+    if (_isLoadingMore) return;
+
+    setState(() {
+      _isLoadingMore = true;
+    });
+
+    Future.delayed(const Duration(seconds: 2), () {
+      setState(() {
+        _currentPage++;
+        _displayedProperties.addAll(_allProperties.skip(_currentPage * 10).take(10));
+        _isLoadingMore = false;
+      });
+    });
+  }
+
+  void _scrollListener() {
+    if (_scrollController.position.extentAfter < 500 && !_isLoadingMore) {
+      _loadMoreProperties();
+    }
   }
 
   void navigateToSearchScreen() async {
@@ -33,6 +73,8 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
   void _updateCategory(String category) {
     setState(() {
       _selectedCategory = category;
+      _currentPage = 1;
+      _displayedProperties = _allProperties.where((property) => property['category'] == _selectedCategory).take(10).toList();
     });
   }
 
@@ -44,14 +86,6 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
 
   @override
   Widget build(BuildContext context) {
-    List<Map<String, dynamic>> displayedProperties = Properties;
-
-    if (_selectedCategory.isNotEmpty) {
-      displayedProperties = Properties
-          .where((property) => property['category'] == _selectedCategory)
-          .toList();
-    }
-
     return Scaffold(
       body: Column(
         children: [
@@ -111,10 +145,15 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
           ),
           Expanded(
             child: ListView.builder(
+              controller: _scrollController,
               padding: const EdgeInsets.fromLTRB(16.0, 0, 16, 16),
-              itemCount: displayedProperties.length,
+              itemCount: _displayedProperties.length + (_isLoadingMore ? 1 : 0),
               itemBuilder: (context, index) {
-                final property = displayedProperties[index];
+                if (index == _displayedProperties.length) {
+                  return Center(child: CircularProgressIndicator());
+                }
+
+                final property = _displayedProperties[index];
                 final imagePaths = property['imagePaths'] as List<String>? ?? [];
 
                 return Column(
@@ -192,3 +231,4 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
     );
   }
 }
+

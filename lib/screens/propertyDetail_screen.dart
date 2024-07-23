@@ -1,7 +1,7 @@
 import 'dart:ui';
+import 'package:at_app/theme/light_theme.dart';
 import 'package:flutter/material.dart';
 import '../data/property_card_data.dart';
-import '../theme/light_theme.dart';
 import 'widgets/propertyCard.dart';
 import 'widgets/propertyDetail_screen_widget.dart';
 import 'widgets/property_details_widgets/emi_calculator.dart';
@@ -101,7 +101,6 @@ class _PropertyDetailScreenState extends State<PropertyDetailScreen> {
 
   @override
   Widget build(BuildContext context) {
-    print('Property Index: ${widget.propertyIndex}');
     return Scaffold(
       body: Stack(
         children: [

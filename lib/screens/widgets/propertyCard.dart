@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import '../../theme/light_theme.dart';
 
 class PropertyCard extends StatefulWidget {
