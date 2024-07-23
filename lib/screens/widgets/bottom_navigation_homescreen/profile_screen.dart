@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../../theme/light_theme.dart';
+
 class ProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -75,19 +77,19 @@ class ProfileScreen extends StatelessWidget {
             ),
             SizedBox(height: screenSize.height * 0.01),
             buildProfileOption(context, Icons.shopping_bag_outlined, 'Buy',
-                Color(0xFFCA996E), '/buy'),
+                ATColor, '/buy'),
             buildProfileOption(context, Icons.monetization_on_outlined, 'Sell',
-                Color(0xFFCA996E), '/login'),
+                ATColor, '/login'),
             buildProfileOption(context, Icons.gavel, 'Past Auction',
-                Color(0xFFCA996E), '/pastAuction'),
+                ATColor, '/pastAuction'),
             buildProfileOption(context, Icons.people_alt_outlined, 'Brokers',
-                Color(0xFFCA996E), '/brokers'),
+                ATColor, '/brokers'),
             buildProfileOption(context, Icons.info, 'About Us',
-                Color(0xFFCA996E), '/about_us'),
+                ATColor, '/about_us'),
             buildProfileOption(context, Icons.mail_outline, 'Contact Us',
-                Color(0xFFCA996E), '/contact_us'),
+                ATColor, '/contact_us'),
             buildProfileOption(
-                context, Icons.logout, 'Log out', Color(0xFFCA996E), '/login'),
+                context, Icons.logout, 'Log out', ATColor, '/login'),
           ],
         ),
       ),

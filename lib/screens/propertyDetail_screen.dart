@@ -1,6 +1,7 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import '../data/property_card_data.dart';
+import '../theme/light_theme.dart';
 import 'widgets/propertyCard.dart';
 import 'widgets/propertyDetail_screen_widget.dart';
 import 'widgets/property_details_widgets/emi_calculator.dart';
@@ -251,9 +252,9 @@ class _PropertyDetailScreenState extends State<PropertyDetailScreen> {
                               selectedIndex = index;
                             });
                           },
-                          fillColor: const Color(0xFFCA996E),
+                          fillColor: ATColor,
                           selectedColor: Colors.white,
-                          color: const Color(0xFFCA996E),
+                          color: ATColor,
                           children: [
                             Container(
                               width: buttonWidth,

@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import '../../theme/light_theme.dart';
+
 class InfoSection extends StatelessWidget {
   final IconData icon;
   final String title;
@@ -20,7 +22,7 @@ class InfoSection extends StatelessWidget {
       children: [
         Row(
           children: [
-            Icon(icon, color: Color(0xFFCA996E)),
+            Icon(icon, color: ATColor),
             Text(title, style: TextStyle(color: Colors.grey)),
           ],
         ),

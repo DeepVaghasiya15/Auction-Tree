@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 // Define your custom font family names
 const String _kFontFamily = 'Lato';
 
+const Color ATColor = Color(0xFFCA996E);
+
 // Define your custom light mode theme
 ThemeData lightMode = ThemeData(
   colorScheme: ColorScheme.light(

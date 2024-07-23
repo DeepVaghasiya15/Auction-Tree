@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../../data/property_card_data.dart';
+import '../../../theme/light_theme.dart';
 import '../../propertyDetail_screen.dart';
 import '../propertyCard.dart';
 import 'discover_screen_widgets/search_bar_widget.dart';
@@ -10,6 +11,7 @@ class DiscoverScreen extends StatefulWidget {
 }
 
 class _DiscoverScreenState extends State<DiscoverScreen> {
+
   final FocusNode _searchFocusNode = FocusNode();
   String _selectedCategory = '';
   String _selectedTitle = '';
@@ -20,7 +22,6 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
     super.dispose();
   }
 
-  // Method to handle navigation to the search screen
   void navigateToSearchScreen() async {
     _searchFocusNode.unfocus();
     await Navigator.push(
@@ -29,14 +30,12 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
     );
   }
 
-  // Method to update the selected category
   void _updateCategory(String category) {
     setState(() {
       _selectedCategory = category;
     });
   }
 
-  // Method to update the selected title
   void _updateTitle(String title) {
     setState(() {
       _selectedTitle = title;
@@ -82,10 +81,10 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                     ),
                   ],
                 ),
-                const SizedBox(height: 10), // Spacing between location and search bar
+                const SizedBox(height: 10),
                 TextField(
                   focusNode: _searchFocusNode,
-                  onTap: navigateToSearchScreen, // Navigate to search screen on tap
+                  onTap: navigateToSearchScreen,
                   decoration: InputDecoration(
                     hintText: 'Search...',
                     fillColor: Colors.black.withOpacity(0.1),
@@ -98,84 +97,70 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                     prefixIcon: const Icon(Icons.search),
                   ),
                 ),
-                const SizedBox(height: 15), // Spacing between search bar and icons
+                const SizedBox(height: 15),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    _buildIconSquare(Icons.landscape_rounded, 'Land', const Color(0xFFCA996E)),
-                    _buildIconSquare(Icons.business, 'Commercial', const Color(0xFFCA996E)),
-                    _buildIconSquare(Icons.home_filled, 'Residential', const Color(0xFFCA996E)),
+                    _buildIconSquare(Icons.landscape_rounded, 'Land', ATColor),
+                    _buildIconSquare(Icons.business, 'Commercial', ATColor),
+                    _buildIconSquare(Icons.home_filled, 'Residential', ATColor),
                   ],
                 ),
               ],
             ),
           ),
           Expanded(
-            child: SingleChildScrollView(
-              child: Padding(
-                padding: const EdgeInsets.fromLTRB(16.0, 0, 16, 16),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+            child: ListView.builder(
+              padding: const EdgeInsets.fromLTRB(16.0, 0, 16, 16),
+              itemCount: displayedProperties.length,
+              itemBuilder: (context, index) {
+                final property = displayedProperties[index];
+                final imagePaths = property['imagePaths'] as List<String>? ?? [];
+
+                return Column(
                   children: [
-                    const Text(
-                      'Featured Property',
-                      style: TextStyle(fontSize: 26, fontWeight: FontWeight.bold),
-                      textAlign: TextAlign.center,
+                    PropertyCard(
+                      imageAssetPath: property['imageAssetPath']!,
+                      type: property['type']!,
+                      title: property['title']!,
+                      address: property['address']!,
+                      builtUpArea: property['builtUpArea']!,
+                      lotSize: property['lotSize']!,
+                      auctionStatus: property['auctionStatus']!,
+                      currentBid: property['currentBid']!,
+                      onTap: () {
+                        _updateTitle(property['title']!);
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => PropertyDetailScreen(
+                              title: property['title']!,
+                              id: property['id'] ?? 'ID not available',
+                              address: property['address'] ?? 'Address not available',
+                              imagePaths: imagePaths,
+                              auctionStatus: property['auctionStatus'] ?? 'No Auction Detail',
+                              latitude: property['latitude'] ?? 'No long',
+                              longitude: property['longitude'] ?? 'No long',
+                              description: property['description'] ?? 'No description',
+                              propertyIndex: property['index'],
+                              title4: property['title4FC'],
+                              subtitleFC: property['subtitleFC'],
+                              subtitle2FC: property['subtitle2FC'],
+                              subtitle3FC: property['subtitle3FC'],
+                              subtitle4FC: property['subtitle4FC'],
+                              trailingFC: property['trailingFC'],
+                              trailing2FC: property['trailing2FC'],
+                              trailing3FC: property['trailing3FC'],
+                              trailing4FC: property['trailing4FC'],
+                            ),
+                          ),
+                        );
+                      },
                     ),
                     const SizedBox(height: 10),
-                    ...displayedProperties.asMap().entries.map((entry) {
-                      final index = entry.key;
-                      final property = entry.value;
-                      final imagePaths = property['imagePaths'] as List<String>? ?? [];
-
-                      return Column(
-                        children: [
-                          PropertyCard(
-                            imageAssetPath: property['imageAssetPath']!,
-                            type: property['type']!,
-                            title: property['title']!,
-                            address: property['address']!,
-                            builtUpArea: property['builtUpArea']!,
-                            lotSize: property['lotSize']!,
-                            auctionStatus: property['auctionStatus']!,
-                            currentBid: property['currentBid']!,
-                            onTap: () {
-                              _updateTitle(property['title']!);
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => PropertyDetailScreen(
-                                    title: property['title']!,
-                                    id: property['id'] ?? 'ID not available',
-                                    address: property['address'] ?? 'Address not available',
-                                    imagePaths: imagePaths,
-                                    auctionStatus: property['auctionStatus'] ?? 'No Auction Detail',
-                                    latitude: property['latitude'] ?? 'No long',
-                                    longitude: property['longitude'] ?? 'No long',
-                                    description: property['description'] ?? 'No description',
-                                    propertyIndex: property['index'],
-                                    title4: property['title4FC'],
-                                    subtitleFC: property['subtitleFC'],
-                                    subtitle2FC: property['subtitle2FC'],
-                                    subtitle3FC: property['subtitle3FC'],
-                                    subtitle4FC: property['subtitle4FC'],
-                                    trailingFC: property['trailingFC'],
-                                    trailing2FC: property['trailing2FC'],
-                                    trailing3FC: property['trailing3FC'],
-                                    trailing4FC: property['trailing4FC'],
-                                  ),
-                                ),
-                              );
-                            },
-                          ),
-                          const SizedBox(height: 10),
-                        ],
-                      );
-                    }).toList(),
-                    const SizedBox(height: 10), // Additional spacing at the bottom
                   ],
-                ),
-              ),
+                );
+              },
             ),
           ),
         ],

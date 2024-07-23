@@ -7,7 +7,7 @@ class AboutUs extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
+        title: const Text(
           'About Us',
           style: TextStyle(fontSize: 24),
         ),
@@ -30,7 +30,7 @@ class AboutUs extends StatelessWidget {
                       child: Image.asset("assets/images/aboutus2.webp"),
                     ),
                   ),
-                  Positioned(
+                  const Positioned(
                     top: 70.0,
                     left: 16.0,
                     right: 16.0,
@@ -57,7 +57,7 @@ class AboutUs extends StatelessWidget {
                   ),
                   borderRadius: BorderRadius.circular(16.0),
                 ),
-                child: Column(
+                child: const Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(

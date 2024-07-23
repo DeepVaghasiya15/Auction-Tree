@@ -4,6 +4,8 @@ import 'package:at_app/screens/widgets/bottom_navigation_homescreen/profile_scre
 import 'package:at_app/screens/widgets/bottom_navigation_homescreen/services_screen.dart';
 import 'package:flutter/material.dart';
 
+import '../theme/light_theme.dart';
+
 class HomeScreenNew extends StatefulWidget {
   const HomeScreenNew({Key? key}) : super(key: key);
 
@@ -51,7 +53,7 @@ class _HomeScreenNewState extends State<HomeScreenNew> {
                 ),
                 bottomNavigationBarTheme: const BottomNavigationBarThemeData(
                   backgroundColor: Colors.transparent,
-                  selectedItemColor: Color(0xFFCA996E),
+                  selectedItemColor: ATColor,
                   unselectedItemColor: Colors.white70,
                   showSelectedLabels: true,
                   showUnselectedLabels: true,

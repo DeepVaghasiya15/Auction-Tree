@@ -80,8 +80,10 @@ class UserCard extends StatelessWidget {
               style: const TextStyle(
                 color: Color(0xFFCA996E),
                 fontWeight: FontWeight.bold,
+                fontSize: 13
               ),
               textAlign: TextAlign.center,
+              overflow: TextOverflow.fade,
             ),
           ),
         ],

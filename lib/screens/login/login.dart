@@ -16,14 +16,14 @@ class LogIn extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              SizedBox(height: 50),  // Add some space at the top to center the content better
+              const SizedBox(height: 50),  // Add some space at the top to center the content better
               Image.asset(
                 'assets/images/auctiontree-logo.png',
                 height: 100,
                 width: 100,
               ),
-              SizedBox(height: 50),
-              Text(
+              const SizedBox(height: 50),
+              const Text(
                 'Log In',
                 style: TextStyle(color: Colors.white, fontSize: 32),
                 textAlign: TextAlign.center,
@@ -32,53 +32,53 @@ class LogIn extends StatelessWidget {
               TextField(
                 decoration: InputDecoration(
                   labelText: 'Email',
-                  labelStyle: TextStyle(color: Colors.white),
+                  labelStyle: const TextStyle(color: Colors.white),
                   filled: true,
                   fillColor: Colors.grey[800],
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(8),
                   ),
                 ),
-                style: TextStyle(color: Colors.white),
+                style: const TextStyle(color: Colors.white),
                 keyboardType: TextInputType.emailAddress,
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               TextField(
                 decoration: InputDecoration(
                   labelText: 'Password',
-                  labelStyle: TextStyle(color: Colors.white),
+                  labelStyle: const TextStyle(color: Colors.white),
                   filled: true,
                   fillColor: Colors.grey[800],
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(8),
                   ),
                 ),
-                style: TextStyle(color: Colors.white),
+                style: const TextStyle(color: Colors.white),
                 obscureText: true,
               ),
-              SizedBox(height: 40),
+              const SizedBox(height: 40),
               ElevatedButton(
                 onPressed: () => Navigator.pushNamed(context, '/homescreennew'),
-                child: Text(
+                style: ElevatedButton.styleFrom(
+                  foregroundColor: Colors.white,
+                  backgroundColor: const Color(0xFFD0A377),
+                  minimumSize: const Size(double.infinity, 50),
+                ),
+                child: const Text(
                   'Log In',
                   style: TextStyle(fontSize: 20),
                 ),
-                style: ElevatedButton.styleFrom(
-                  foregroundColor: Colors.white,
-                  backgroundColor: Color(0xFFD0A377),
-                  minimumSize: Size(double.infinity, 50),
-                ),
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               Center(
                 child: RichText(
                   text: TextSpan(
                     text: 'Don\'t have an account? ',
-                    style: TextStyle(color: Colors.white),
+                    style: const TextStyle(color: Colors.white),
                     children: [
                       TextSpan(
                         text: 'Register',
-                        style: TextStyle(
+                        style: const TextStyle(
                           color: Colors.blue,
                           decoration: TextDecoration.underline,
                         ),

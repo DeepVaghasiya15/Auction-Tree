@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../theme/light_theme.dart';
+
 class PropertyCard extends StatefulWidget {
   final String imageAssetPath;
   final String type;
@@ -106,7 +108,7 @@ class _PropertyCardState extends State<PropertyCard> {
                     children: [
                       const Icon(
                         Icons.location_pin,
-                        color: Color(0xFFCA996E),
+                        color: ATColor,
                       ),
                       const SizedBox(
                         width: 7,
@@ -160,7 +162,7 @@ class _PropertyCardState extends State<PropertyCard> {
                           style: TextStyle(
                             color: widget.auctionStatus == 'Auction is live'
                                 ? Colors.green
-                                : Color(0xFFCA996E),
+                                : ATColor,
                             fontWeight: FontWeight.bold,
                             fontSize: 16,
                           ),
