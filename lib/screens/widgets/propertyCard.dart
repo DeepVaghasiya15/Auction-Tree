@@ -130,9 +130,9 @@ class _PropertyCardState extends State<PropertyCard> {
                     text: TextSpan(
                       style: const TextStyle(fontSize: 16, color: Colors.grey), // Default style
                       children: [
-                        TextSpan(
+                        const TextSpan(
                           text: '\u2022 Builtup Area: ',
-                          style: const TextStyle(fontWeight: FontWeight.bold),
+                          style: TextStyle(fontWeight: FontWeight.bold),
                         ),
                         TextSpan(
                           text: widget.builtUpArea,
@@ -140,9 +140,9 @@ class _PropertyCardState extends State<PropertyCard> {
                         const TextSpan(
                           text: '\n',
                         ),
-                        TextSpan(
+                        const TextSpan(
                           text: '\u2022 Lot Size: ',
-                          style: const TextStyle(fontWeight: FontWeight.bold),
+                          style: TextStyle(fontWeight: FontWeight.bold),
                         ),
                         TextSpan(
                           text: widget.lotSize,
