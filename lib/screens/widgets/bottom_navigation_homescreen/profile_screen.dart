@@ -28,7 +28,7 @@ class ProfileScreen extends StatelessWidget {
               decoration: BoxDecoration(
                 color: Colors.black87,
                 borderRadius: BorderRadius.circular(15),
-                boxShadow: [
+                boxShadow: const [
                   BoxShadow(
                     color: Colors.black26,
                     blurRadius: 10,
@@ -43,7 +43,7 @@ class ProfileScreen extends StatelessWidget {
                   CircleAvatar(
                     radius: screenSize.width * 0.12,
                     backgroundImage:
-                    AssetImage('assets/images/Broker/andreNotice.jpg'),
+                    const AssetImage('assets/images/Broker/andreNotice.jpg'),
                   ),
                   SizedBox(height: screenSize.height * 0.01),
                   Text(
@@ -57,10 +57,6 @@ class ProfileScreen extends StatelessWidget {
                   SizedBox(height: screenSize.height * 0.02),
                   ElevatedButton(
                     onPressed: () {},
-                    child: Text(
-                      'Edit Profile',
-                      style: TextStyle(color: Colors.black),
-                    ),
                     style: ElevatedButton.styleFrom(
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(30),
@@ -70,6 +66,10 @@ class ProfileScreen extends StatelessWidget {
                         horizontal: screenSize.width * 0.08,
                         vertical: screenSize.height * 0.01,
                       ),
+                    ),
+                    child: const Text(
+                      'Edit Profile',
+                      style: TextStyle(color: Colors.black),
                     ),
                   ),
                 ],

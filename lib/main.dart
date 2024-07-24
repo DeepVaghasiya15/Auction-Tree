@@ -10,9 +10,16 @@ import 'package:at_app/screens/widgets/bottom_navigation_homescreen/profile_scre
 import 'package:at_app/splash.dart';
 import 'package:at_app/theme/light_theme.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'model/toggle_button_provider_property_detail_screen.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(
+    ChangeNotifierProvider(
+      create: (context) => ToggleButtonProvider(),
+      child: const MyApp(),
+    )
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -35,6 +42,27 @@ class MyApp extends StatelessWidget {
         '/buy': (context) => DiscoverScreen(),
         '/brokers': (context) => BrokersScreen(),
         '/about_us': (context) => AboutUs(),
+        '/propertyDetail': (context) => PropertyDetailScreen(
+          // These will be populated with actual data in navigation
+          imagePaths: [],
+          title: '',
+          id: '',
+          address: '',
+          auctionStatus: '',
+          latitude: '',
+          longitude: '',
+          description: '',
+          propertyIndex: 0,
+          title4: '',
+          subtitleFC: '',
+          subtitle2FC: '',
+          subtitle3FC: '',
+          subtitle4FC: '',
+          trailingFC: '',
+          trailing2FC: '',
+          trailing3FC: '',
+          trailing4FC: '',
+        ),
       },
     );
   }

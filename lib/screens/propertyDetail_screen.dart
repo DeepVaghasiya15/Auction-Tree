@@ -1,7 +1,8 @@
-import 'dart:ui';
-import 'package:at_app/theme/light_theme.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import '../data/property_card_data.dart';
+import '../model/toggle_button_provider_property_detail_screen.dart';
+import '../theme/light_theme.dart';
 import 'widgets/propertyCard.dart';
 import 'widgets/propertyDetail_screen_widget.dart';
 import 'widgets/property_details_widgets/emi_calculator.dart';
@@ -59,8 +60,6 @@ class PropertyDetailScreen extends StatefulWidget {
 
 class _PropertyDetailScreenState extends State<PropertyDetailScreen> {
   late PageController _pageController;
-  List<bool> isSelected = [true, false, false, false];
-  int selectedIndex = 0;
   List<Map<String, dynamic>> leftColumnData = [];
   List<Map<String, dynamic>> rightColumnData = [];
 
@@ -101,6 +100,7 @@ class _PropertyDetailScreenState extends State<PropertyDetailScreen> {
 
   @override
   Widget build(BuildContext context) {
+    print('Building property detail screen');
     return Scaffold(
       body: Stack(
         children: [
@@ -240,42 +240,41 @@ class _PropertyDetailScreenState extends State<PropertyDetailScreen> {
                     child: LayoutBuilder(
                       builder: (context, constraints) {
                         double buttonWidth = (constraints.maxWidth - 30) / 4;
-                        return ToggleButtons(
-                          borderRadius: BorderRadius.circular(12),
-                          isSelected: isSelected,
-                          onPressed: (int index) {
-                            setState(() {
-                              for (int buttonIndex = 0; buttonIndex < isSelected.length; buttonIndex++) {
-                                isSelected[buttonIndex] = (buttonIndex == index);
-                              }
-                              selectedIndex = index;
-                            });
+                        return Consumer<ToggleButtonProvider>(
+                          builder: (context, toggleButtonProvider, child) {
+                            return ToggleButtons(
+                              borderRadius: BorderRadius.circular(12),
+                              isSelected: toggleButtonProvider.isSelected,
+                              onPressed: (int index) {
+                                toggleButtonProvider.updateIndex(index);
+                              },
+                              fillColor: ATColor,
+                              selectedColor: Colors.white,
+                              color: ATColor,
+                              children: [
+                                Container(
+                                  width: buttonWidth,
+                                  padding: const EdgeInsets.symmetric(vertical: 10),
+                                  child: const Text('Property Description', textAlign: TextAlign.center),
+                                ),
+                                Container(
+                                  width: buttonWidth,
+                                  padding: const EdgeInsets.symmetric(vertical: 10),
+                                  child: const Text('Fees & Commission', textAlign: TextAlign.center),
+                                ),
+                                Container(
+                                  width: buttonWidth,
+                                  padding: const EdgeInsets.symmetric(vertical: 10),
+                                  child: const Text('Order Reports', textAlign: TextAlign.center),
+                                ),
+                                Container(
+                                  width: buttonWidth,
+                                  padding: const EdgeInsets.symmetric(vertical: 10),
+                                  child: const Text('EMI Calculator', textAlign: TextAlign.center),
+                                ),
+                              ],
+                            );
                           },
-                          fillColor: ATColor,
-                          selectedColor: Colors.white,
-                          color: ATColor,
-                          children: [
-                            Container(
-                              width: buttonWidth,
-                              padding: const EdgeInsets.symmetric(vertical: 10),
-                              child: const Text('Property Description', textAlign: TextAlign.center),
-                            ),
-                            Container(
-                              width: buttonWidth,
-                              padding: const EdgeInsets.symmetric(vertical: 10),
-                              child: const Text('Fees & Commission', textAlign: TextAlign.center),
-                            ),
-                            Container(
-                              width: buttonWidth,
-                              padding: const EdgeInsets.symmetric(vertical: 10),
-                              child: const Text('Order Reports', textAlign: TextAlign.center),
-                            ),
-                            Container(
-                              width: buttonWidth,
-                              padding: const EdgeInsets.symmetric(vertical: 10),
-                              child: const Text('EMI Calculator', textAlign: TextAlign.center),
-                            ),
-                          ],
                         );
                       },
                     ),
@@ -285,7 +284,11 @@ class _PropertyDetailScreenState extends State<PropertyDetailScreen> {
                   ),
                   Padding(
                     padding: const EdgeInsets.only(left: 20, right: 20),
-                    child: _buildContent(selectedIndex),
+                    child: Consumer<ToggleButtonProvider>(
+                      builder: (context, toggleButtonProvider, child) {
+                        return _buildContent(toggleButtonProvider.selectedIndex);
+                      },
+                    ),
                   ),
                   const SizedBox(
                     height: 20,

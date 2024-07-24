@@ -86,6 +86,7 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
 
   @override
   Widget build(BuildContext context) {
+    print('Building Widget');
     return Scaffold(
       body: Column(
         children: [
