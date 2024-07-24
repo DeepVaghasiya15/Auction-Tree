@@ -3,7 +3,6 @@ import 'package:provider/provider.dart';
 import '../data/property_card_data.dart';
 import '../model/toggle_button_provider_property_detail_screen.dart';
 import '../theme/light_theme.dart';
-import 'widgets/propertyCard.dart';
 import 'widgets/propertyDetail_screen_widget.dart';
 import 'widgets/property_details_widgets/emi_calculator.dart';
 import 'widgets/property_details_widgets/enquire_now_button.dart';
@@ -100,7 +99,6 @@ class _PropertyDetailScreenState extends State<PropertyDetailScreen> {
 
   @override
   Widget build(BuildContext context) {
-    print('Building property detail screen');
     return Scaffold(
       body: Stack(
         children: [

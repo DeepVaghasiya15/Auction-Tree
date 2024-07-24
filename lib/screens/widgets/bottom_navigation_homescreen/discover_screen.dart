@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import '../../../data/property_card_data.dart';
+import 'package:provider/provider.dart';
+import '../../../model/discover_screen_provider.dart';
 import '../../../theme/light_theme.dart';
 import '../../propertyDetail_screen.dart';
 import '../propertyCard.dart';
@@ -13,17 +14,10 @@ class DiscoverScreen extends StatefulWidget {
 class _DiscoverScreenState extends State<DiscoverScreen> {
   final FocusNode _searchFocusNode = FocusNode();
   final ScrollController _scrollController = ScrollController();
-  String _selectedCategory = '';
-  String _selectedTitle = '';
-  int _currentPage = 1;
-  bool _isLoadingMore = false;
-  List<Map<String, dynamic>> _displayedProperties = [];
-  List<Map<String, dynamic>> _allProperties = Properties; // Assuming this is the complete list
 
   @override
   void initState() {
     super.initState();
-    _loadInitialProperties();
     _scrollController.addListener(_scrollListener);
   }
 
@@ -34,31 +28,9 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
     super.dispose();
   }
 
-  void _loadInitialProperties() {
-    setState(() {
-      _displayedProperties = _allProperties.take(10).toList();
-    });
-  }
-
-  void _loadMoreProperties() {
-    if (_isLoadingMore) return;
-
-    setState(() {
-      _isLoadingMore = true;
-    });
-
-    Future.delayed(const Duration(seconds: 2), () {
-      setState(() {
-        _currentPage++;
-        _displayedProperties.addAll(_allProperties.skip(_currentPage * 10).take(10));
-        _isLoadingMore = false;
-      });
-    });
-  }
-
   void _scrollListener() {
-    if (_scrollController.position.extentAfter < 500 && !_isLoadingMore) {
-      _loadMoreProperties();
+    if (_scrollController.position.extentAfter < 500 && !Provider.of<DiscoverProvider>(context, listen: false).isLoadingMore) {
+      Provider.of<DiscoverProvider>(context, listen: false).loadMoreProperties();
     }
   }
 
@@ -70,23 +42,8 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
     );
   }
 
-  void _updateCategory(String category) {
-    setState(() {
-      _selectedCategory = category;
-      _currentPage = 1;
-      _displayedProperties = _allProperties.where((property) => property['category'] == _selectedCategory).take(10).toList();
-    });
-  }
-
-  void _updateTitle(String title) {
-    setState(() {
-      _selectedTitle = title;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
-    print('Building Widget');
     return Scaffold(
       body: Column(
         children: [
@@ -133,72 +90,80 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                   ),
                 ),
                 const SizedBox(height: 15),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    _buildIconSquare(Icons.landscape_rounded, 'Land', ATColor),
-                    _buildIconSquare(Icons.business, 'Commercial', ATColor),
-                    _buildIconSquare(Icons.home_filled, 'Residential', ATColor),
-                  ],
+                Consumer<DiscoverProvider>(
+                  builder: (context, provider, child) {
+                    return Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        _buildIconSquare(Icons.landscape_rounded, 'Land', ATColor, provider.selectedCategory, provider.updateCategory),
+                        _buildIconSquare(Icons.business, 'Commercial', ATColor, provider.selectedCategory, provider.updateCategory),
+                        _buildIconSquare(Icons.home_filled, 'Residential', ATColor, provider.selectedCategory, provider.updateCategory),
+                      ],
+                    );
+                  },
                 ),
               ],
             ),
           ),
           Expanded(
-            child: ListView.builder(
-              controller: _scrollController,
-              padding: const EdgeInsets.fromLTRB(16.0, 0, 16, 16),
-              itemCount: _displayedProperties.length + (_isLoadingMore ? 1 : 0),
-              itemBuilder: (context, index) {
-                if (index == _displayedProperties.length) {
-                  return Center(child: CircularProgressIndicator());
-                }
+            child: Consumer<DiscoverProvider>(
+              builder: (context, provider, child) {
+                return ListView.builder(
+                  controller: _scrollController,
+                  padding: const EdgeInsets.fromLTRB(16.0, 0, 16, 16),
+                  itemCount: provider.displayedProperties.length + (provider.isLoadingMore ? 1 : 0),
+                  itemBuilder: (context, index) {
+                    if (index == provider.displayedProperties.length) {
+                      return Center(child: CircularProgressIndicator());
+                    }
 
-                final property = _displayedProperties[index];
-                final imagePaths = property['imagePaths'] as List<String>? ?? [];
+                    final property = provider.displayedProperties[index];
+                    final imagePaths = property['imagePaths'] as List<String>? ?? [];
 
-                return Column(
-                  children: [
-                    PropertyCard(
-                      imageAssetPath: property['imageAssetPath']!,
-                      type: property['type']!,
-                      title: property['title']!,
-                      address: property['address']!,
-                      builtUpArea: property['builtUpArea']!,
-                      lotSize: property['lotSize']!,
-                      auctionStatus: property['auctionStatus']!,
-                      currentBid: property['currentBid']!,
-                      onTap: () {
-                        _updateTitle(property['title']!);
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => PropertyDetailScreen(
-                              title: property['title']!,
-                              id: property['id'] ?? 'ID not available',
-                              address: property['address'] ?? 'Address not available',
-                              imagePaths: imagePaths,
-                              auctionStatus: property['auctionStatus'] ?? 'No Auction Detail',
-                              latitude: property['latitude'] ?? 'No long',
-                              longitude: property['longitude'] ?? 'No long',
-                              description: property['description'] ?? 'No description',
-                              propertyIndex: property['index'],
-                              title4: property['title4FC'],
-                              subtitleFC: property['subtitleFC'],
-                              subtitle2FC: property['subtitle2FC'],
-                              subtitle3FC: property['subtitle3FC'],
-                              subtitle4FC: property['subtitle4FC'],
-                              trailingFC: property['trailingFC'],
-                              trailing2FC: property['trailing2FC'],
-                              trailing3FC: property['trailing3FC'],
-                              trailing4FC: property['trailing4FC'],
-                            ),
-                          ),
-                        );
-                      },
-                    ),
-                    const SizedBox(height: 10),
-                  ],
+                    return Column(
+                      children: [
+                        PropertyCard(
+                          imageAssetPath: property['imageAssetPath']!,
+                          type: property['type']!,
+                          title: property['title']!,
+                          address: property['address']!,
+                          builtUpArea: property['builtUpArea']!,
+                          lotSize: property['lotSize']!,
+                          auctionStatus: property['auctionStatus']!,
+                          currentBid: property['currentBid']!,
+                          onTap: () {
+                            provider.updateTitle(property['title']!);
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => PropertyDetailScreen(
+                                  title: property['title']!,
+                                  id: property['id'] ?? 'ID not available',
+                                  address: property['address'] ?? 'Address not available',
+                                  imagePaths: imagePaths,
+                                  auctionStatus: property['auctionStatus'] ?? 'No Auction Detail',
+                                  latitude: property['latitude'] ?? 'No long',
+                                  longitude: property['longitude'] ?? 'No long',
+                                  description: property['description'] ?? 'No description',
+                                  propertyIndex: property['index'],
+                                  title4: property['title4FC'],
+                                  subtitleFC: property['subtitleFC'],
+                                  subtitle2FC: property['subtitle2FC'],
+                                  subtitle3FC: property['subtitle3FC'],
+                                  subtitle4FC: property['subtitle4FC'],
+                                  trailingFC: property['trailingFC'],
+                                  trailing2FC: property['trailing2FC'],
+                                  trailing3FC: property['trailing3FC'],
+                                  trailing4FC: property['trailing4FC'],
+                                ),
+                              ),
+                            );
+                          },
+                        ),
+                        const SizedBox(height: 10),
+                      ],
+                    );
+                  },
                 );
               },
             ),
@@ -208,16 +173,16 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
     );
   }
 
-  Widget _buildIconSquare(IconData icon, String label, Color color) {
+  Widget _buildIconSquare(IconData icon, String label, Color color, String selectedCategory, void Function(String) updateCategory) {
     return GestureDetector(
-      onTap: () => _updateCategory(label),
+      onTap: () => updateCategory(label),
       child: Column(
         children: [
           Container(
             width: 100,
             height: 40,
             decoration: BoxDecoration(
-              color: _selectedCategory == label ? color.withOpacity(0.3) : Colors.white,
+              color: selectedCategory == label ? color.withOpacity(0.3) : Colors.white,
               borderRadius: BorderRadius.circular(8.0),
               border: Border.all(
                 color: Colors.grey,
@@ -232,4 +197,3 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
     );
   }
 }
-
