@@ -11,6 +11,7 @@ import 'package:at_app/splash.dart';
 import 'package:at_app/theme/light_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'data/brokers_data.dart';
 import 'model/discover_screen_provider.dart';
 import 'model/toggle_button_provider_property_detail_screen.dart';
 
@@ -20,6 +21,7 @@ void main() {
       providers: [
         ChangeNotifierProvider(create: (context) => DiscoverProvider()),
         ChangeNotifierProvider(create: (context) => ToggleButtonProvider()),
+        ChangeNotifierProvider(create: (context) => UserProvider()),
       ],
       child: const MyApp(),
     ),
