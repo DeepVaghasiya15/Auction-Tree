@@ -95,6 +95,7 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                     return Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
+                        _buildIconSquare(Icons.all_inclusive, 'All', ATColor, provider.selectedCategory, provider.updateCategory),
                         _buildIconSquare(Icons.landscape_rounded, 'Land', ATColor, provider.selectedCategory, provider.updateCategory),
                         _buildIconSquare(Icons.business, 'Commercial', ATColor, provider.selectedCategory, provider.updateCategory),
                         _buildIconSquare(Icons.home_filled, 'Residential', ATColor, provider.selectedCategory, provider.updateCategory),
@@ -179,7 +180,7 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
       child: Column(
         children: [
           Container(
-            width: 100,
+            width: 80,
             height: 40,
             decoration: BoxDecoration(
               color: selectedCategory == label ? color.withOpacity(0.3) : Colors.white,

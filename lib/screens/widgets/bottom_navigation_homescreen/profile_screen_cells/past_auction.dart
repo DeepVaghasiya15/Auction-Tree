@@ -9,6 +9,7 @@ class PastAuction extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print('building past auction');
     return Scaffold(
       appBar: AppBar(
         title: const Text('Past Auctions', style: TextStyle(fontSize: 26, fontWeight: FontWeight.bold)),

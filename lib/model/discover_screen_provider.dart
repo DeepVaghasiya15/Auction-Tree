@@ -3,7 +3,7 @@ import 'package:flutter/foundation.dart';
 import '../data/property_card_data.dart';
 
 class DiscoverProvider with ChangeNotifier {
-  String _selectedCategory = '';
+  String _selectedCategory = 'All'; // Initialize to "All"
   String _selectedTitle = '';
   int _currentPage = 1;
   bool _isLoadingMore = false;
@@ -32,7 +32,16 @@ class DiscoverProvider with ChangeNotifier {
 
     Future.delayed(const Duration(seconds: 2), () {
       _currentPage++;
-      _displayedProperties.addAll(_allProperties.skip(_currentPage * 10).take(10));
+      if (_selectedCategory == 'All') {
+        _displayedProperties.addAll(_allProperties.skip((_currentPage - 1) * 10).take(10));
+      } else {
+        _displayedProperties.addAll(
+          _allProperties
+              .where((property) => property['category'] == _selectedCategory)
+              .skip((_currentPage - 1) * 10)
+              .take(10),
+        );
+      }
       _isLoadingMore = false;
       notifyListeners();
     });
@@ -41,7 +50,16 @@ class DiscoverProvider with ChangeNotifier {
   void updateCategory(String category) {
     _selectedCategory = category;
     _currentPage = 1;
-    _displayedProperties = _allProperties.where((property) => property['category'] == _selectedCategory).take(10).toList();
+
+    if (category == 'All') {
+      _displayedProperties = _allProperties.take(10).toList();
+    } else {
+      _displayedProperties = _allProperties
+          .where((property) => property['category'] == _selectedCategory)
+          .take(10)
+          .toList();
+    }
+
     notifyListeners();
   }
 
