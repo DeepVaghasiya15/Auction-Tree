@@ -67,7 +67,7 @@ class MyApp extends StatelessWidget {
           trailingFC: '',
           trailing2FC: '',
           trailing3FC: '',
-          trailing4FC: '',
+          trailing4FC: '', currentBid: '',
         ),
       },
     );

@@ -17,6 +17,7 @@ class PropertyDetailScreen extends StatefulWidget {
   final String id;
   final String address;
   final String auctionStatus;
+  final String currentBid;
   final String latitude;
   final String longitude;
   final String description;
@@ -38,6 +39,7 @@ class PropertyDetailScreen extends StatefulWidget {
     required this.address,
     required this.imagePaths,
     required this.auctionStatus,
+    required this.currentBid,
     required this.latitude,
     required this.longitude,
     required this.description,
@@ -75,7 +77,7 @@ class _PropertyDetailScreenState extends State<PropertyDetailScreen> {
       {'icon': Icons.home, 'title': 'Property \nTotal No of Floor', 'value': Properties[widget.propertyIndex]['totalFloor']},
       {'icon': Icons.layers, 'title': 'Property On Floor', 'value': Properties[widget.propertyIndex]['propertyFloor']},
       {'icon': Icons.today, 'title': 'Possesion Time \n(In Days)', 'value': Properties[widget.propertyIndex]['PossesionTime']},
-      {'icon': Icons.gavel, 'title': 'Accepts Buyers Title', 'value': Properties[widget.propertyIndex]['AcceptBuyersTitle']},
+      {'icon': Icons.gavel, 'title': 'Accepts Buyers \nTitle', 'value': Properties[widget.propertyIndex]['AcceptBuyersTitle']},
     ];
 
     rightColumnData = [
@@ -223,7 +225,7 @@ class _PropertyDetailScreenState extends State<PropertyDetailScreen> {
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
                             PropertyDetailsWidget(propertyData: leftColumnData),
-                            const SizedBox(width: 20),
+                            const SizedBox(width:10),
                             PropertyDetailsWidget(propertyData: rightColumnData),
                           ],
                         ),
@@ -302,11 +304,11 @@ class _PropertyDetailScreenState extends State<PropertyDetailScreen> {
               ),
             ),
           ),
-          const Positioned(
+          Positioned(
             left: 20,
             right: 20,
             bottom: 20, // Adjust as needed
-            child: EnquireNowButton(),
+            child: EnquireNowButton(auctionStatus: widget.auctionStatus,highestBid: widget.currentBid,),
           ),
         ],
       ),

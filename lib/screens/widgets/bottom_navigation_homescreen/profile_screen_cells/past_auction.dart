@@ -75,6 +75,7 @@ class PastAuction extends StatelessWidget {
                                     trailing2FC: property.trailing2FC,
                                     trailing3FC: property.trailing3FC,
                                     trailing4FC: property.trailing4FC,
+                                    currentBid: property.currentBid,
                                   ),
                                 ),
                               );

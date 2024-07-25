@@ -44,6 +44,7 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       body: Column(
         children: [
@@ -143,6 +144,7 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                                   address: property['address'] ?? 'Address not available',
                                   imagePaths: imagePaths,
                                   auctionStatus: property['auctionStatus'] ?? 'No Auction Detail',
+                                  currentBid: property['currentBid'],
                                   latitude: property['latitude'] ?? 'No long',
                                   longitude: property['longitude'] ?? 'No long',
                                   description: property['description'] ?? 'No description',
@@ -175,12 +177,13 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
   }
 
   Widget _buildIconSquare(IconData icon, String label, Color color, String selectedCategory, void Function(String) updateCategory) {
+    final screenSize = MediaQuery.of(context).size;
     return GestureDetector(
       onTap: () => updateCategory(label),
       child: Column(
         children: [
           Container(
-            width: 80,
+            width: screenSize.width * 0.2,
             height: 40,
             decoration: BoxDecoration(
               color: selectedCategory == label ? color.withOpacity(0.3) : Colors.white,

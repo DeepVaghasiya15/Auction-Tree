@@ -52,16 +52,16 @@ class DiscoverProvider with ChangeNotifier {
     _currentPage = 1;
 
     if (category == 'All') {
-      _displayedProperties = _allProperties.take(10).toList();
+      _displayedProperties = List.from(_allProperties);
     } else {
       _displayedProperties = _allProperties
           .where((property) => property['category'] == _selectedCategory)
-          .take(10)
           .toList();
     }
 
     notifyListeners();
   }
+
 
   void updateTitle(String title) {
     _selectedTitle = title;

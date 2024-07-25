@@ -46,16 +46,13 @@ class UserCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     print('building usercard');
-    final screenSize = MediaQuery.of(context).size;
     return Card(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          SizedBox(
-            height: screenSize.height * 0.2,
-            width: screenSize.height * 0.22, // Adjust the height as needed
+          Expanded(
             child: AspectRatio(
-              aspectRatio: 3 / 4, // Aspect ratio of the image
+              aspectRatio: 4 / 4, // Aspect ratio of the image
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(16.0), // Adjust the radius as needed
                 child: Image.asset(
@@ -66,23 +63,24 @@ class UserCard extends StatelessWidget {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.fromLTRB(8.0, 8, 8, 0),
-            child: Text(
-              user.name,
-              style: const TextStyle(fontWeight: FontWeight.bold),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 8.0),
-            child: Text(
-              user.jobProfile,
-              style: const TextStyle(
-                color: Color(0xFFCA996E),
-                fontWeight: FontWeight.bold,
-                fontSize: 13,
-              ),
-              textAlign: TextAlign.center,
-              overflow: TextOverflow.fade,
+            padding: const EdgeInsets.all(8.0),
+            child: Column(
+              children: [
+                Text(
+                  user.name,
+                  style: const TextStyle(fontWeight: FontWeight.bold),
+                ),
+                Text(
+                  user.jobProfile,
+                  style: const TextStyle(
+                    color: Color(0xFFCA996E),
+                    fontWeight: FontWeight.bold,
+                    fontSize: 13,
+                  ),
+                  textAlign: TextAlign.center,
+                  overflow: TextOverflow.ellipsis, // Use ellipsis to handle overflow
+                ),
+              ],
             ),
           ),
         ],
