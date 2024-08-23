@@ -44,7 +44,7 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
 
   @override
   Widget build(BuildContext context) {
-
+    print('Builidng discover screen');
     return Scaffold(
       body: Column(
         children: [
@@ -144,7 +144,6 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                                   address: property['address'] ?? 'Address not available',
                                   imagePaths: imagePaths,
                                   auctionStatus: property['auctionStatus'] ?? 'No Auction Detail',
-                                  currentBid: property['currentBid'],
                                   latitude: property['latitude'] ?? 'No long',
                                   longitude: property['longitude'] ?? 'No long',
                                   description: property['description'] ?? 'No description',
@@ -158,6 +157,7 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                                   trailing2FC: property['trailing2FC'],
                                   trailing3FC: property['trailing3FC'],
                                   trailing4FC: property['trailing4FC'],
+                                  currentBid: property['currentBid'],
                                 ),
                               ),
                             );
